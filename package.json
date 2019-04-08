@@ -1,0 +1,14 @@
+{
+  "name": "newscoop",
+  "version": "1.0.0",
+  "description": "Responsive Band Website",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w scss/ -o dist/css/ --recursive"
+  },
+  "author": "\" Nicola D'Oronzo\"",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  }
+}

@@ -1,0 +1,133 @@
+@import 'anim';
+/*Header*/
+
+#fixed-nav-bar{
+    height: 7vh;
+    width: 100%;
+    background: $nav-footer;
+    z-index: 3;
+    position: fixed;
+
+    @media (orientation:landscape) {
+        height: 10vh;
+    }
+
+    .menu-btn{
+        
+        
+        float: left;
+
+        .line{
+
+            //responsive la X e' asimmetrica. Da sistemare.
+            margin: 8px;
+            padding: .2rem;
+            width: 2.5rem;
+            height: .2rem;
+            background: white;
+
+            // le regole si sovrascrivono l'un l'altra
+            
+            &.shown{
+                @include softly;
+
+                &:nth-child(1){
+                    transform: translate(0px, 18px);
+                    
+                }
+                &:nth-child(2){
+                    opacity: 0;
+                    @include softly;                    
+                }
+                &:nth-child(3){
+                    transform: translate(0px, -10px);
+                }
+            }
+            &.shown_second{
+                @include softly;
+
+                &:nth-child(1){
+                    transform: translate(0px, 18px) rotate(45deg);
+                }
+
+                &:nth-child(3){
+                    transform: translate(0px, -10px) rotate(-45deg);
+                }
+
+                
+            }
+            
+        }
+
+        &:hover{
+
+            cursor: pointer;
+
+            .line{
+                
+                background: lighten($orange, 5);
+                @include softly;
+            }
+        }
+        
+    }
+
+    #social{ 
+        margin: auto 0;
+        float: right;
+        color: #fff;
+        
+        i{  
+            padding: .3rem;
+        }
+
+        a:hover{
+            @include softly;
+            color: $orange;
+        }
+
+
+        
+
+    }
+}
+
+nav ul{   
+
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+    padding-left: 0;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    background-color: rgba(darken($orange, 10), 0.5);
+    
+    //nascosto
+    @include softly;
+    transform: translate(50%, -50%);
+    
+    &.shown{
+        transform: translate(-50%, -50%);
+        @include softly;
+    }
+
+    li{
+        
+        @include softly;
+        display:block;
+        font-size: 2em;
+        padding: 2rem;
+        
+        &:hover{
+            background-color: rgba(darken($orange, 20), 0.7);
+            @include softly;
+        }
+     
+        
+    }
+}

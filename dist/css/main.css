@@ -1,0 +1,316 @@
+/*media query*/
+/*Header*/
+#fixed-nav-bar {
+  height: 7vh;
+  width: 100%;
+  background: #1d1d1d;
+  z-index: 3;
+  position: fixed; }
+  @media (orientation: landscape) {
+    #fixed-nav-bar {
+      height: 10vh; } }
+  #fixed-nav-bar .menu-btn {
+    float: left; }
+    #fixed-nav-bar .menu-btn .line {
+      margin: 8px;
+      padding: .2rem;
+      width: 2.5rem;
+      height: .2rem;
+      background: white; }
+      #fixed-nav-bar .menu-btn .line.shown {
+        transition: all .3s ease-in-out; }
+        #fixed-nav-bar .menu-btn .line.shown:nth-child(1) {
+          transform: translate(0px, 18px); }
+        #fixed-nav-bar .menu-btn .line.shown:nth-child(2) {
+          opacity: 0;
+          transition: all .3s ease-in-out; }
+        #fixed-nav-bar .menu-btn .line.shown:nth-child(3) {
+          transform: translate(0px, -10px); }
+      #fixed-nav-bar .menu-btn .line.shown_second {
+        transition: all .3s ease-in-out; }
+        #fixed-nav-bar .menu-btn .line.shown_second:nth-child(1) {
+          transform: translate(0px, 18px) rotate(45deg); }
+        #fixed-nav-bar .menu-btn .line.shown_second:nth-child(3) {
+          transform: translate(0px, -10px) rotate(-45deg); }
+    #fixed-nav-bar .menu-btn:hover {
+      cursor: pointer; }
+      #fixed-nav-bar .menu-btn:hover .line {
+        background: #ff9f0e;
+        transition: all .3s ease-in-out; }
+  #fixed-nav-bar #social {
+    margin: auto 0;
+    float: right;
+    color: #fff; }
+    #fixed-nav-bar #social i {
+      padding: .3rem; }
+    #fixed-nav-bar #social a:hover {
+      transition: all .3s ease-in-out;
+      color: #f39200; }
+
+nav ul {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 1;
+  padding-left: 0;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  background-color: rgba(192, 115, 0, 0.5);
+  transition: all .3s ease-in-out;
+  transform: translate(50%, -50%); }
+  nav ul.shown {
+    transform: translate(-50%, -50%);
+    transition: all .3s ease-in-out; }
+  nav ul li {
+    transition: all .3s ease-in-out;
+    display: block;
+    font-size: 2em;
+    padding: 2rem; }
+    nav ul li:hover {
+      background-color: rgba(141, 85, 0, 0.7);
+      transition: all .3s ease-in-out; }
+
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-family: "Roboto", Helvetica, sans-serif;
+  color: #000; }
+
+/*Global*/
+img {
+  max-width: 100%; }
+
+ul {
+  list-style-type: none; }
+
+a {
+  text-decoration: none;
+  color: #fff; }
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.center--floated {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.current {
+  color: #f39200; }
+
+/*Showcase*/
+#showcase {
+  width: 100vw;
+  height: 640px; }
+
+@media screen and (orientation: portrait) and (min-width: 769px) and (max-width: 1170px) {
+  #showcase {
+    height: 100vh; } }
+  @media screen and (min-width: 1171px) {
+    #showcase {
+      height: 100vh; } }
+  #showcase #logo {
+    margin: 0 auto;
+    width: 100%;
+    height: 50%;
+    background-image: url(/dist/imgs/logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 515px; }
+    @media (orientation: landscape) {
+      #showcase #logo {
+        background-position-y: -150px; } }
+    @media screen and (min-width: 501px) and (max-width: 768px) {
+      #showcase #logo {
+        height: 70%;
+        background-position-y: -150px;
+        max-width: 2000px; } }
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      #showcase #logo {
+        height: 80%;
+        max-width: 2000px; } }
+    @media screen and (min-width: 1171px) {
+      #showcase #logo {
+        height: 100%;
+        max-width: 2400px;
+        background-position-y: -350px; } }
+  #showcase #presect {
+    background: url(/dist/imgs/Vecs/Component.svg);
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+    background-repeat: no-repeat; }
+    @media screen and (min-width: 501px) and (max-width: 768px) {
+      #showcase #presect {
+        height: 30%; } }
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      #showcase #presect {
+        height: 20%; } }
+    @media screen and (min-width: 1171px) {
+      #showcase #presect {
+        height: 0%; } }
+
+#music {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: url(/dist/imgs/Vecs/MusicBG.svg) no-repeat;
+  background-size: cover; }
+  #music #mp3-player {
+    margin: 0 auto;
+    width: 70%;
+    height: 70%; }
+    @media (orientation: landscape) {
+      #music #mp3-player {
+        float: left;
+        margin: 0;
+        width: 50%; } }
+    #music #mp3-player .song-image {
+      margin: 0 auto;
+      width: 240px;
+      height: 240px;
+      background-color: #FFBF5F; }
+    #music #mp3-player h3 {
+      text-align: center;
+      color: #fff; }
+    #music #mp3-player #song-bar {
+      height: .2rem;
+      margin-bottom: 2rem;
+      margin: 0 auto;
+      width: 50%;
+      background-color: #fff; }
+      #music #mp3-player #song-bar #bar-pointer {
+        position: relative;
+        border-radius: 50%;
+        bottom: .5rem;
+        width: 1rem;
+        height: 1rem;
+        background-color: #fff; }
+        #music #mp3-player #song-bar #bar-pointer:hover {
+          width: 1.5rem;
+          height: 1.5rem;
+          transition: all .3s ease-in-out; }
+    #music #mp3-player .mp3-player-buttons {
+      margin-top: 5px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+      height: 10%; }
+      #music #mp3-player .mp3-player-buttons i {
+        box-sizing: border-box;
+        padding: 1rem;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        margin: 0 1rem; }
+        #music #mp3-player .mp3-player-buttons i#play {
+          padding: 1.5rem;
+          margin: 0 2px 0 2px; }
+        #music #mp3-player .mp3-player-buttons i:hover {
+          color: #da8300;
+          border: 5px solid #da8300;
+          transition: all .3s ease-in-out; }
+        @media (orientation: landscape) {
+          #music #mp3-player .mp3-player-buttons i#list {
+            display: none; } }
+  #music #songlist {
+    display: none;
+    background-color: rgba(218, 131, 0, 0.5);
+    margin: 0 auto;
+    float: right; }
+    @media (orientation: landscape) {
+      #music #songlist {
+        display: block;
+        width: 45%;
+        max-width: 500px;
+        height: 400px; } }
+
+#news {
+  margin: 0;
+  padding: 0;
+  height: 750px;
+  width: 100%;
+  background: url(/dist/imgs/Vecs/NewsBG.svg) no-repeat;
+  background-size: cover; }
+  #news .text-box {
+    overflow: hidden;
+    background-color: #EAEAEA;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25); }
+    #news .text-box .title {
+      padding: .3rem;
+      text-transform: uppercase;
+      text-decoration: underline; }
+    #news .text-box p {
+      padding: .3rem; }
+    #news .text-box.one {
+      float: left;
+      clear: left;
+      margin: .5rem 0 0 .5rem;
+      width: 60%;
+      max-height: 30%; }
+    #news .text-box.two {
+      float: right;
+      clear: right;
+      margin-top: .5rem;
+      width: 60%;
+      max-height: 40%; }
+  #news .photo-box {
+    background-color: #aaaaaa;
+    width: 30%;
+    height: 30%;
+    margin: 0 auto; }
+    #news .photo-box.one {
+      float: right;
+      clear: right;
+      background: url(https://source.unsplash.com/800x600);
+      background-size: cover; }
+    #news .photo-box.two {
+      float: left;
+      clear: left;
+      background: url(https://source.unsplash.com/800x700);
+      background-size: cover; }
+  #news .contact-btn {
+    position: relative;
+    top: 50px;
+    text-align: center;
+    margin: 0 auto;
+    color: #fff;
+    border: 5px solid #fff;
+    clear: both;
+    width: 50%;
+    max-width: 200px;
+    height: 5rem; }
+    #news .contact-btn h1 {
+      vertical-align: middle; }
+    #news .contact-btn:hover {
+      border-color: #da8300;
+      color: #da8300;
+      transition: all .3s ease-in-out; }
+
+footer {
+  background-color: #1d1d1d;
+  width: 100%;
+  height: 200px; }
+  footer h5 {
+    position: relative;
+    top: 20px;
+    margin: 0 0 10px 25px;
+    color: #fff; }
+  footer h6 {
+    color: #fff;
+    float: right;
+    margin-right: 25px; }
