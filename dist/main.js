@@ -1,4 +1,5 @@
-//document queries
+'use howler'
+//document queries for menu
 const threeLinesMenu = document.querySelector('.menu-btn');
 const threeLines = document.querySelectorAll('.line');
 const socialMenu = document.querySelector('#social');
@@ -30,7 +31,6 @@ function toggleMenu() {
             elem.classList.add("shown")
         })
         menuIsShown = true;
-        
     } else {
 
         setTimeout( function() {
@@ -50,6 +50,18 @@ function toggleMenu() {
         menuIsShown = false;
         
     }
+}
+
+//mp3 player
+const playBtn = document.getElementById("play");
+
+playBtn.addEventListener('click', toggleSong);
+const song = new Howl({
+    src: './audio/test.mp3'    
+})
+function toggleSong() {
+    
+    song.play();
 }
 
 
