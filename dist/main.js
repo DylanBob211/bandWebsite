@@ -54,15 +54,37 @@ function toggleMenu() {
 
 //mp3 player
 const playBtn = document.getElementById("play");
+const mp3Btns = document.querySelectorAll('.mp3_btns');
+let playBtnIsPressed = false;
+let mp3_btnIsPressed = false;
 
-playBtn.addEventListener('click', toggleSong);
 const song = new Howl({
     src: './audio/test.mp3'    
 })
+
+playBtn.addEventListener('click', toggleSong);
+
 function toggleSong() {
+    if(!playBtnIsPressed){
+        //song.play();
+        playBtn.classList.remove('fa-play')
+        playBtn.classList.add('fa-pause')
+        playBtn.classList.add("pressed");
+        playBtnIsPressed = true;
+    } else {
+        //song.stop();
+        playBtn.classList.remove('pressed')
+        playBtn.classList.remove('fa-pause')
+        playBtn.classList.add('fa-play');
+        playBtnIsPressed = false;
+    }
+
     
-    song.play();
 }
-
-
+// risolvi la questione dei tasti. Fai uno switch sui 3/4 tasti
+function toggleBtns(){
+    if(!btnIsPressed) {
+        
+    }
+}
 
