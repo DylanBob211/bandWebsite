@@ -1,4 +1,3 @@
-'use howler'
 //document queries for menu
 const threeLinesMenu = document.querySelector('.menu-btn');
 const threeLines = document.querySelectorAll('.line');
@@ -54,37 +53,53 @@ function toggleMenu() {
 
 //mp3 player
 const playBtn = document.getElementById("play");
-const mp3Btns = document.querySelectorAll('.mp3_btns');
-let playBtnIsPressed = false;
-let mp3_btnIsPressed = false;
+const backBtn = document.getElementById("back");
+const nextBtn = document.getElementById("next");
+const listBtn = document.getElementById("list");
+const songBar = document.getElementById("song-bar");
+const songTimeRange = songBar.querySelector("h6");
 
-const song = new Howl({
-    src: './audio/test.mp3'    
-})
+let backBtnIsPressed = false; //0
+let playBtnIsPressed = false; //1
+let nextBtnIsPressed = false; //2
+let listBtnIsPressed = false; //3
+
+const song = new Audio('./audio/test.mp3');
 
 playBtn.addEventListener('click', toggleSong);
+backBtn.addEventListener('click', function(){console.log("back")});
+nextBtn.addEventListener('click', function(){console.log("next")});
+listBtn.addEventListener('click', toggleList);
 
 function toggleSong() {
     if(!playBtnIsPressed){
-        //song.play();
+        song.play();
         playBtn.classList.remove('fa-play')
         playBtn.classList.add('fa-pause')
         playBtn.classList.add("pressed");
         playBtnIsPressed = true;
     } else {
-        //song.stop();
+        song.pause();
         playBtn.classList.remove('pressed')
-        playBtn.classList.remove('fa-pause')
+        playBtn.classList.remove('fa-pause');
+        playBtn.classList.remove("pressed");
         playBtn.classList.add('fa-play');
         playBtnIsPressed = false;
     }
 
     
 }
-// risolvi la questione dei tasti. Fai uno switch sui 3/4 tasti
-function toggleBtns(){
-    if(!btnIsPressed) {
-        
+
+
+
+function toggleList(){
+    let frame = document.getElementById("song-image");
+    
+    if(!listBtnIsPressed) {
+        frame.style.background = "red";
+        listBtnIsPressed = true;
+    } else {
+        frame.style.background = "blue";
+        listBtnIsPressed = false;
     }
 }
-
