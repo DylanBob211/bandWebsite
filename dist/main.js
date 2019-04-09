@@ -56,8 +56,9 @@ const playBtn = document.getElementById("play");
 const backBtn = document.getElementById("back");
 const nextBtn = document.getElementById("next");
 const listBtn = document.getElementById("list");
+
 const songBar = document.getElementById("song-bar");
-const songTimeRange = songBar.querySelector("h6");
+const pointer = songBar.querySelector('#bar-pointer');
 
 let backBtnIsPressed = false; //0
 let playBtnIsPressed = false; //1
@@ -73,17 +74,23 @@ listBtn.addEventListener('click', toggleList);
 
 function toggleSong() {
     if(!playBtnIsPressed){
+        //action
         song.play();
+        //style
         playBtn.classList.remove('fa-play')
         playBtn.classList.add('fa-pause')
         playBtn.classList.add("pressed");
+
         playBtnIsPressed = true;
     } else {
+        //action
         song.pause();
+        //style
         playBtn.classList.remove('pressed')
         playBtn.classList.remove('fa-pause');
         playBtn.classList.remove("pressed");
         playBtn.classList.add('fa-play');
+        
         playBtnIsPressed = false;
     }
 
@@ -97,6 +104,7 @@ function toggleList(){
     
     if(!listBtnIsPressed) {
         frame.style.background = "red";
+        console.log(song.played)
         listBtnIsPressed = true;
     } else {
         frame.style.background = "blue";

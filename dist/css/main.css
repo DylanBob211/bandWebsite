@@ -93,9 +93,8 @@ nav ul {
     color: #fff; }
   #mp3-player #song-bar {
     height: .2rem;
-    margin-bottom: 2rem;
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
     background-color: #fff; }
     #mp3-player #song-bar #bar-pointer {
       position: relative;
@@ -105,17 +104,7 @@ nav ul {
       height: 1rem;
       background-color: #fff; }
       #mp3-player #song-bar #bar-pointer:hover {
-        width: 1.5rem;
-        height: 1.5rem;
-        transition: all .3s ease-in-out; }
-    #mp3-player #song-bar::before {
-      content: '0.00';
-      color: white;
-      display: inline; }
-    #mp3-player #song-bar::after {
-      content: '5.00';
-      color: white;
-      display: inline; }
+        cursor: pointer; }
   #mp3-player .mp3-player-buttons {
     margin-top: 5px;
     color: #fff;
@@ -146,13 +135,25 @@ nav ul {
   display: none;
   background-color: rgba(218, 131, 0, 0.5);
   margin: 0 auto;
-  float: right; }
+  float: right;
+  overflow: hidden; }
   @media (orientation: landscape) {
     #songlist {
       display: block;
       width: 45%;
       max-width: 500px;
       height: 400px; } }
+  #songlist ul {
+    text-overflow: hidden; }
+    #songlist ul .song-item {
+      font-size: 2em;
+      white-space: nowrap;
+      padding: .5rem;
+      color: #fff; }
+      #songlist ul .song-item:hover {
+        background-color: rgba(141, 85, 0, 0.7);
+        transition: all .3s ease-in-out;
+        cursor: default; }
 
 * {
   box-sizing: border-box; }
