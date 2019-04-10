@@ -110,3 +110,4 @@ function toggleList(){
         listBtnIsPressed = false;
     }
 }
+
