@@ -96,7 +96,18 @@ nav ul {
     margin: 0 auto;
     width: 70%;
     background-color: #fff; }
+    #mp3-player #song-bar:before {
+      content: '0.00';
+      color: #fff;
+      position: absolute;
+      right: 85%; }
+    #mp3-player #song-bar:after {
+      content: '5.00';
+      color: #fff;
+      position: relative;
+      left: 100%; }
     #mp3-player #song-bar #bar-pointer {
+      display: none;
       position: relative;
       border-radius: 50%;
       bottom: .5rem;
@@ -196,62 +207,40 @@ a {
 
 /*Showcase*/
 #showcase {
-  width: 100vw;
-  height: 640px; }
-
-@media screen and (orientation: portrait) and (min-width: 769px) and (max-width: 1170px) {
-  #showcase {
-    height: 100vh; } }
-  @media screen and (min-width: 1171px) {
-    #showcase {
-      height: 100vh; } }
+  width: 100%;
+  height: 100vh; }
   #showcase #logo {
     margin: 0 auto;
+    background-position-x: center;
+    background-position-y: center;
     width: 100%;
-    height: 50%;
+    height: 60%;
     background-image: url(/dist/imgs/logo.png);
     background-size: cover;
     background-repeat: no-repeat;
-    max-width: 515px; }
+    border: #fff solid 1px; }
     @media (orientation: landscape) {
       #showcase #logo {
-        background-position-y: -150px; } }
-    @media screen and (min-width: 501px) and (max-width: 768px) {
-      #showcase #logo {
-        height: 70%;
-        background-position-y: -150px;
-        max-width: 2000px; } }
-    @media screen and (min-width: 769px) and (max-width: 1170px) {
-      #showcase #logo {
-        height: 80%;
-        max-width: 2000px; } }
-    @media screen and (min-width: 1171px) {
-      #showcase #logo {
-        height: 100%;
-        max-width: 2400px;
-        background-position-y: -350px; } }
+        height: 100vh; } }
   #showcase #presect {
     background: url(/dist/imgs/Vecs/Component.svg);
     width: 100%;
-    height: 50%;
+    height: 40%;
     background-size: cover;
     background-repeat: no-repeat; }
-    @media screen and (min-width: 501px) and (max-width: 768px) {
+    @media (orientation: landscape) {
       #showcase #presect {
-        height: 30%; } }
-    @media screen and (min-width: 769px) and (max-width: 1170px) {
-      #showcase #presect {
-        height: 20%; } }
-    @media screen and (min-width: 1171px) {
-      #showcase #presect {
-        height: 0%; } }
+        height: 0; } }
 
 #music {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 100vh;
   background: url(/dist/imgs/Vecs/MusicBG.svg) no-repeat;
   background-size: cover; }
+  @media (orientation: landscape) {
+    #music {
+      height: 150vh; } }
 
 #news {
   margin: 0;

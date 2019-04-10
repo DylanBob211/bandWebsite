@@ -100,14 +100,13 @@ function toggleSong() {
 
 
 function toggleList(){
-    let frame = document.getElementById("song-image");
+    let songList = document.getElementById("songlist");
     
     if(!listBtnIsPressed) {
-        frame.style.background = "red";
-        console.log(song.played)
+        printListOnImageframe();
         listBtnIsPressed = true;
     } else {
-        frame.style.background = "blue";
+        printListOnImageframe();
         listBtnIsPressed = false;
     }
 }

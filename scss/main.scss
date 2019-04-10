@@ -6,6 +6,7 @@
 *{
     box-sizing: border-box;
     
+    
 }
 
 body{
@@ -63,68 +64,39 @@ a{
 
 #showcase {
    
-    width: 100vw;
-    height: 640px;    
-
-    @media (orientation: portrait){
-        @include mediaLg{
-            height: 100vh;
-        }
-    }
-    
-    @include mediaXL{
-        height: 100vh;
-    }
+    width: 100%;
+    height: 100vh;    
     
 
     #logo{
-
         margin: 0 auto;
+        background-position-x: center;
+        background-position-y: center;
         width: 100%;
-        height: 50%;
+        height: 60%;
         background-image: url(/dist/imgs/logo.png);
         background-size: cover;
         background-repeat: no-repeat;
-        max-width: 515px;
         
         @media (orientation: landscape){
-            background-position-y: -150px; 
+            height: 100vh;
         }
+        border: #fff solid 1px;
         
-        @include mediaMd {
-            height: 70%;
-            background-position-y: -150px;
-            max-width: 2000px;
-        }
-        @include mediaLg{
-            height: 80%;
-            max-width: 2000px;
-        }
-        @include mediaXL {
-            height: 100%;
-            max-width: 2400px;
-            background-position-y: -350px;
-        }
+        
     }
 
     #presect {
         background: url(/dist/imgs/Vecs/Component.svg);
         width: 100%;
-        height: 50%;
+        height: 40%;
         background-size: cover;
         background-repeat: no-repeat;
 
-
-        @include mediaMd {
-            height: 30%;
+        @media (orientation: landscape){
+            height: 0;
         }
-        @include mediaLg{
-            height: 20%;
-            
-        }
-        @include mediaXL{
-            height: 0%;
-        }
+        
     }
 
     
@@ -134,7 +106,11 @@ a{
 
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 100vh;
+
+    @media (orientation: landscape) {
+        height: 150vh;
+    }
     background: url(/dist/imgs/Vecs/MusicBG.svg) no-repeat;
     background-size: cover;
 

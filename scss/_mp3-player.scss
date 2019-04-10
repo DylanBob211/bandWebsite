@@ -3,7 +3,7 @@
     margin: 0 auto;
     width: 70%;
     height: 70%;
-    
+
 
     @media (orientation: landscape){
         float: left;
@@ -28,8 +28,21 @@
         margin: 0 auto;
         width: 70%;
         background-color: #fff;
-        
+
+        &:before{
+            content: '0.00';
+            color: #fff;
+            position: absolute;
+            right: 85%;
+        }
+        &:after{
+            content: '5.00';
+            color: #fff;
+            position: relative;
+            left: 100%;
+        }
         #bar-pointer{
+            display: none;
             position: relative;
             border-radius: 50%;
             bottom: .5rem;
