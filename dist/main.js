@@ -56,16 +56,24 @@ const playBtn = document.getElementById("play");
 const backBtn = document.getElementById("back");
 const nextBtn = document.getElementById("next");
 const listBtn = document.getElementById("list");
+const volBtn = document.getElementById("volume");
 
 const songBar = document.getElementById("song-bar");
 const pointer = songBar.querySelector('#bar-pointer');
 
-let backBtnIsPressed = false; //0
-let playBtnIsPressed = false; //1
-let nextBtnIsPressed = false; //2
-let listBtnIsPressed = false; //3
+let backBtnIsPressed = false; 
+let playBtnIsPressed = false; 
+let nextBtnIsPressed = false; 
+let listBtnIsPressed = false; 
+let volBtnIsPressed = false;
+
+let songsSrc = []
+let posters = []
+
+let currentSong = 0;
 
 const song = new Audio('./audio/test.mp3');
+
 
 playBtn.addEventListener('click', toggleSong);
 backBtn.addEventListener('click', function(){console.log("back")});
@@ -82,6 +90,7 @@ function toggleSong() {
         playBtn.classList.add("pressed");
 
         playBtnIsPressed = true;
+        console.log(song);
     } else {
         //action
         song.pause();
@@ -102,12 +111,63 @@ function toggleSong() {
 function toggleList(){
     let songList = document.getElementById("songlist");
     
+    
+
     if(!listBtnIsPressed) {
-        printListOnImageframe();
+        console.log(song.played.end(0))
         listBtnIsPressed = true;
     } else {
-        printListOnImageframe();
+        console.log(song.played)
         listBtnIsPressed = false;
     }
 }
 
+
+const timePassed = document.querySelector('#song-bar');
+
+//volume up-down
+
+volBtn.addEventListener('mouseover', event => {
+    
+})
+
+function volBtnIcon(){
+    if(song.volume == 0){
+        volBtn.classList.add('fa-volume-off')
+        removeLastToken(volBtn);
+    } else if(song.volume <= 0.5){
+        volBtn.classList.add('fa-volume-down')
+        removeLastToken(volBtn);
+    } else if(song.volume > 1.0){
+        volBtn.classList.add('fa-volume-up')
+        removeLastToken(volBtn);
+    }
+}
+
+
+//volume muted
+volBtn.addEventListener('click', toggleVolume);
+
+
+function toggleVolume(){
+    if(!volBtnIsPressed){
+
+        removeLastToken(volBtn);
+        volBtn.classList.add('fa-volume-mute');
+        volBtnIsPressed = true;
+    } else {
+        volBtn.classList.remove('fa-volume-mute');
+        
+        volBtnIsPressed = false;
+    }
+}
+
+function removeLastToken(btn){
+    btn.classList.forEach( el => {
+        if(el === "fa" || el === "mp3-btns"){
+            return true;
+        } else {
+            btn.classList.remove(el);
+        }
+    })
+}
