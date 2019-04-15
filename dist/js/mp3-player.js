@@ -4,7 +4,7 @@ export const playBtn = document.getElementById("play");
 export const backBtn = document.getElementById("back");
 export const nextBtn = document.getElementById("next");
 const listBtn = document.getElementById("list");
-const volBtn = document.getElementById("volume");
+export const volBtn = document.getElementById("volume");
 
 export let songList = [];
 let currentSong = 2;
@@ -93,10 +93,10 @@ function volBtnIcon(){
 
 
 //volume muted
-volBtn.addEventListener('click', toggleVolume);
+//volBtn.addEventListener('click', toggleVolume);
 
 
-function toggleVolume(){
+/*function toggleVolume(){
     if(!volBtnIsPressed){
 
         removeLastFaToken(volBtn);
@@ -107,4 +107,4 @@ function toggleVolume(){
 
         volBtnIsPressed = false;
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*mixins*/
 /*media query*/
 /*Header*/
 #fixed-nav-bar {
@@ -75,6 +76,7 @@ nav ul {
       transition: all .3s ease-in-out; }
 
 #mp3-player {
+  /*container*/
   width: 70%;
   height: 70%;
   box-sizing: content-box;
@@ -83,31 +85,78 @@ nav ul {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  /*btn-icons*/ }
   @media (orientation: landscape) {
     #mp3-player {
       float: left;
       margin: 0;
       width: 50%; } }
+  #mp3-player i {
+    border: 2px solid #fff;
+    padding: .6rem;
+    border-radius: 50%;
+    color: #fff; }
+    #mp3-player i:hover {
+      color: #da8300;
+      border: 5px solid #da8300;
+      transition: all .3s ease-in-out; }
+    @media (orientation: landscape) {
+      #mp3-player i#list {
+        display: none; } }
+    #mp3-player i.pressed {
+      transition: all .3s ease-in-out;
+      transform: rotateY(180deg); }
+    #mp3-player i#play {
+      margin-top: 20px;
+      padding: 1.3rem;
+      font-size: 1.3em; }
   #mp3-player #song-image {
     align-self: stretch;
     background: url(https://source.unsplash.com/800x600);
     background-size: cover;
     background-position: center;
     flex: 3; }
-  #mp3-player h3 {
+  #mp3-player #songtitle {
+    text-overflow: ellipsis;
     text-align: center;
     color: #fff;
-    flex: 1; }
+    flex: .25; }
+  #mp3-player #songauthor {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    flex: .25; }
   #mp3-player #xtra-btns {
-    flex: .5;
+    width: 90%;
+    flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    margin-bottom: 10px;
+    /*default range cross-browser styling*/ }
+    #mp3-player #xtra-btns i {
+      border: none;
+      font-size: 1.5rem; }
+    #mp3-player #xtra-btns input[type="range"] {
+      display: none;
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent; }
+      #mp3-player #xtra-btns input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none; }
+      #mp3-player #xtra-btns input[type="range"]:focus {
+        outline: none; }
+      #mp3-player #xtra-btns input[type="range"]::-ms-track {
+        width: 100%;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent; }
   #mp3-player #song-bar {
     height: .2rem;
     margin: 0 auto;
+    margin-bottom: 10px;
     width: 70%;
     background-color: #fff;
     flex-shrink: 1;
@@ -131,24 +180,6 @@ nav ul {
       background-color: #fff; }
       #mp3-player #song-bar #bar-pointer:hover {
         cursor: pointer; }
-  #mp3-player i {
-    border: 2px solid #fff;
-    padding: .6rem;
-    border-radius: 50%;
-    color: #fff; }
-    #mp3-player i#play {
-      padding: 1.3rem;
-      font-size: 1.3em; }
-    #mp3-player i:hover {
-      color: #da8300;
-      border: 5px solid #da8300;
-      transition: all .3s ease-in-out; }
-    @media (orientation: landscape) {
-      #mp3-player i#list {
-        display: none; } }
-    #mp3-player i.pressed {
-      transition: all .3s ease-in-out;
-      transform: rotateY(180deg); }
   #mp3-player .mp3-player-buttons {
     margin-top: 5px;
     text-align: center;
@@ -158,10 +189,6 @@ nav ul {
     display: flex;
     justify-content: space-around;
     align-items: center; }
-    #mp3-player .mp3-player-buttons input {
-      display: none;
-      -webkit-appearance: slider-vertical;
-      position: absolute; }
 
 #songlist {
   display: none;

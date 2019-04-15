@@ -2,7 +2,15 @@ $black: #000;
 $orange: #f39200;
 $nav-footer: #1d1d1d;
 
-
+/*mixins*/
+@mixin responsive-box($height){
+    position: relative;
+    &:before{
+      content: '';
+      display: block;
+      padding-top: $height;
+    }
+}
 
 /*media query*/
 
