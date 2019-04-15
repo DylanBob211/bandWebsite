@@ -78,7 +78,7 @@ export function toggleSong() {
 //volume up-down
 
 
-function volBtnIcon(){
+function volBtnIcon(song){
     if(song.volume == 0){
         volBtn.classList.add('fa-volume-off')
         removeLastFaToken(volBtn);
@@ -90,6 +90,7 @@ function volBtnIcon(){
         removeLastFaToken(volBtn);
     }
 }
+
 
 
 //volume muted

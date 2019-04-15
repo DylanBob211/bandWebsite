@@ -90,31 +90,19 @@
             font-size: 1.5rem;
         }
 
-        /*default range cross-browser styling*/
-        input[type="range"]{
-            
-            display: none;  
-            -webkit-appearance: none;
-            width: 100%;
-            background: transparent;   
-            
-            &::-webkit-slider-thumb{
-                -webkit-appearance: none;
-            }
-            &:focus{
-                outline: none;
-            }
-
-            &::-ms-track{
-                width:100%;
-                cursor: pointer;
-                background: transparent;
-                border-color: transparent;
-                color: transparent;
-            }
-           
-
+        .slider{
+            width: 50%;
+            height: 10px;
         }
+        #outer-slider{
+            background: rgba(#fff,0.5)
+        }
+        #inner-slider{
+            background: #fff;
+            width: 50%;
+        }
+
+        
     }
     //seeker-bar
     #song-bar{

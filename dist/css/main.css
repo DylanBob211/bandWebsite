@@ -133,26 +133,18 @@ nav ul {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    /*default range cross-browser styling*/ }
+    margin-bottom: 10px; }
     #mp3-player #xtra-btns i {
       border: none;
       font-size: 1.5rem; }
-    #mp3-player #xtra-btns input[type="range"] {
-      display: none;
-      -webkit-appearance: none;
-      width: 100%;
-      background: transparent; }
-      #mp3-player #xtra-btns input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none; }
-      #mp3-player #xtra-btns input[type="range"]:focus {
-        outline: none; }
-      #mp3-player #xtra-btns input[type="range"]::-ms-track {
-        width: 100%;
-        cursor: pointer;
-        background: transparent;
-        border-color: transparent;
-        color: transparent; }
+    #mp3-player #xtra-btns .slider {
+      width: 50%;
+      height: 10px; }
+    #mp3-player #xtra-btns #outer-slider {
+      background: rgba(255, 255, 255, 0.5); }
+    #mp3-player #xtra-btns #inner-slider {
+      background: #fff;
+      width: 50%; }
   #mp3-player #song-bar {
     height: .2rem;
     margin: 0 auto;

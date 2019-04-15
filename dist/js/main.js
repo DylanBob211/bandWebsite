@@ -5,7 +5,7 @@ const threeLinesMenu = document.querySelector('.menu-btn');
 threeLinesMenu.addEventListener("click", toggleMenu);
 
 import { playBtn, backBtn, nextBtn, songList, 
-    volBtn, toggleSong, nextSong, prevSong } from "./mp3-player.js";
+    volBtn, toggleSong, nextSong, prevSong} from "./mp3-player.js";
 
 import { Song } from './songs.js';
 
@@ -34,15 +34,48 @@ nextBtn.addEventListener('click', nextSong);
 
 //xtra-btns
 
-volBtn.addEventListener('mouseover', toggleVolume);
-volBtn.addEventListener('mouseleave', toggleVolume)
 
-function toggleVolume(){
-    const volRange = document.querySelector('input[type="range"]');
-    volRange.style.display = "block";
-    
+
+//per il volume devi legare il valore del volume dall'API audio al range
+//se il range e' al massimo il volume e' a 1.0
+//creare un dragging event
+
+let drag = false;
+const volumeOuter = document.querySelector('#outer-slider');
+const volumeInner = document.querySelector('#inner-slider');
+
+volumeOuter.addEventListener('mousedown', ev =>{
+    drag = true;
+    updateBar(ev.clientX);
+});
+
+document.addEventListener('mousemove', ev =>{
+    if(drag){
+        updateBar(ev.clientX);
+    }
+});
+function updateBar(x, vol){
+    let volume = volumeOuter;
+    var percentage;
+        //if only volume have specificed
+        //then direct update volume
+        if (vol) {
+            percentage = vol * 100;
+        } else {
+            var position = x - volume.offsetLeft;
+            percentage = 100 * position / volume.clientWidth;
+        }
+
+        if (percentage > 100) {
+            percentage = 100;
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+        volumeInner.style.width = percentage + "%";
+        evans.volume = percentage / 100;
+
 }
-
 
 
 
