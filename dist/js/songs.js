@@ -23,4 +23,6 @@ export class Song extends Audio{
         this.pause();
         this.currentTime = 0;
     }
+
+    
 }

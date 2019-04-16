@@ -9,6 +9,7 @@ export const volBtn = document.getElementById("volume");
 export let songList = [];
 let currentSong = 2;
 
+// songList[currentSong] e' la canzone caricata sull'mp3
 //back button
 export function prevSong(){
     if(songList[currentSong].paused){
@@ -80,32 +81,45 @@ export function toggleSong() {
 
 function volBtnIcon(song){
     if(song.volume == 0){
+        removeLastFaToken(volBtn);
         volBtn.classList.add('fa-volume-off')
-        removeLastFaToken(volBtn);
+        
     } else if(song.volume <= 0.5){
+        removeLastFaToken(volBtn);
         volBtn.classList.add('fa-volume-down')
+        
+    } else if(song.volume < 1.0){
         removeLastFaToken(volBtn);
-    } else if(song.volume > 1.0){
         volBtn.classList.add('fa-volume-up')
-        removeLastFaToken(volBtn);
+        
     }
 }
 
 
+export const volumeOuter = document.querySelector('#outer-slider');
+export const volumeInner = document.querySelector('#inner-slider');
 
-//volume muted
-//volBtn.addEventListener('click', toggleVolume);
 
+export function updateBar(x, vol){
+    let volume = volumeOuter;
+    var percentage;
+        //if only volume have specificed
+        //then direct update volume
+        if (vol) {
+            percentage = vol * 100;
+        } else {
+            var position = x - volume.offsetLeft;
+            percentage = 100 * position / volume.clientWidth;
+        }
 
-/*function toggleVolume(){
-    if(!volBtnIsPressed){
+        if (percentage > 100) {
+            percentage = 100;
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+        volumeInner.style.width = percentage + "%";
+        songList[currentSong].volume = percentage / 100;
 
-        removeLastFaToken(volBtn);
-        volBtn.classList.add('fa-volume-mute');
-        volBtnIsPressed = true;
-    } else {
-        volBtn.classList.remove('fa-volume-mute');
-
-        volBtnIsPressed = false;
-    }
-}*/
+        volBtnIcon(songList[currentSong]);
+}

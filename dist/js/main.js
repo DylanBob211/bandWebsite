@@ -5,7 +5,8 @@ const threeLinesMenu = document.querySelector('.menu-btn');
 threeLinesMenu.addEventListener("click", toggleMenu);
 
 import { playBtn, backBtn, nextBtn, songList, 
-    volBtn, toggleSong, nextSong, prevSong} from "./mp3-player.js";
+    volBtn, toggleSong, nextSong, prevSong
+    , volumeOuter, volumeInner, updateBar} from "./mp3-player.js";
 
 import { Song } from './songs.js';
 
@@ -38,45 +39,27 @@ nextBtn.addEventListener('click', nextSong);
 
 //per il volume devi legare il valore del volume dall'API audio al range
 //se il range e' al massimo il volume e' a 1.0
-//creare un dragging event
-
 let drag = false;
-const volumeOuter = document.querySelector('#outer-slider');
-const volumeInner = document.querySelector('#inner-slider');
 
 volumeOuter.addEventListener('mousedown', ev =>{
     drag = true;
     updateBar(ev.clientX);
 });
+window.addEventListener('mouseup', () => {
+    drag = false;
+})
 
 document.addEventListener('mousemove', ev =>{
     if(drag){
         updateBar(ev.clientX);
     }
 });
-function updateBar(x, vol){
-    let volume = volumeOuter;
-    var percentage;
-        //if only volume have specificed
-        //then direct update volume
-        if (vol) {
-            percentage = vol * 100;
-        } else {
-            var position = x - volume.offsetLeft;
-            percentage = 100 * position / volume.clientWidth;
-        }
 
-        if (percentage > 100) {
-            percentage = 100;
-        }
-        if (percentage < 0) {
-            percentage = 0;
-        }
-        volumeInner.style.width = percentage + "%";
-        evans.volume = percentage / 100;
+//ricorda di farne un metodo static della classe Song
 
-}
 
+//bug need event for mouse up
+//devo capire cosa fa questo codice per bene. 
 
 
 
