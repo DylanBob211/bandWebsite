@@ -4,17 +4,15 @@ import {toggleMenu} from './menu.js';
 const threeLinesMenu = document.querySelector('.menu-btn');
 threeLinesMenu.addEventListener("click", toggleMenu);
 
-import { playBtn, backBtn, nextBtn, songList, 
-    volBtn, toggleSong, nextSong, prevSong
-    , volumeOuter, volumeInner, updateBar} from "./mp3-player.js";
+import { playBtn, backBtn, nextBtn, songList,
+     toggleSong, nextSong, prevSong,
+      volumeOuter, updateVolBar, currentSong} from "./mp3-player.js";
 
 import { Song } from './songs.js';
 
 
 
 
-const songBar = document.getElementById("song-bar");
-const pointer = songBar.querySelector('#bar-pointer');
 
 
 //canzoni nella cartella audio
@@ -33,43 +31,64 @@ playBtn.addEventListener('click', toggleSong);
 backBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
 
-//xtra-btns
+//body onload updates
+document.querySelector('body').onload = function loadUpdates(){
+    titleUpdate();
+    
+}
+function titleUpdate() {
+    const title = document.querySelector('#songtitle');
 
+    title.innerHTML = songList[currentSong].title;
+}
 
+// volume in dragging
 
-//per il volume devi legare il valore del volume dall'API audio al range
-//se il range e' al massimo il volume e' a 1.0
 let drag = false;
 
 volumeOuter.addEventListener('mousedown', ev =>{
     drag = true;
-    updateBar(ev.clientX);
+    updateVolBar(ev.clientX);
 });
-window.addEventListener('mouseup', () => {
+document.addEventListener('mouseup', () => {
     drag = false;
 })
 
 document.addEventListener('mousemove', ev =>{
     if(drag){
-        updateBar(ev.clientX);
+        updateVolBar(ev.clientX);
     }
 });
 
-//ricorda di farne un metodo static della classe Song
+const songBar = document.getElementById("song-bar");
+const pointer = songBar.querySelector('#bar-pointer');
 
 
-//bug need event for mouse up
-//devo capire cosa fa questo codice per bene. 
 
+
+//da rifare tutto con calma e criterio
+//fai una funzione che prende come paramentri la canzone in corso, la posizione del mouse dal dragging, 
+function updateSongSeeker(totalSeconds){
+    //totale in percentuale
+    var percentage = totalSeconds * 100;
+    // 1 percento
+    
+}   
+//setta il momento della canzone alla nuova durata indicata dal cursore
+        //per far cio serve sapere la posizione del cursore in relazioen alla barra della canzone
+    //sposta il puntatore alla posizione 
 
 
 
 
 //FAI PULIZIA IN _mp3-player.scss
 
-//FINISCI IL PULZANTE VOLUME E LA GESTIONE DEL VOLUME
 //SISTEMA LA QUESTIONE DELLA DURATA E LA PROGRESSIONE DEL BRANO
+
 //CREA UNA SERIE DI CANZONI E FAI LA TRACKLIST
 //STILIZZA LA TRACKLIST E LA POSIZIONE IN LANDSCAPE
 //SISTEMA IL BOTTONE TRACKLIST
+
+
+
 

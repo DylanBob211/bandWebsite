@@ -89,19 +89,27 @@
             border: none;
             font-size: 1.5rem;
         }
+        #volset{
+            
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
 
-        .slider{
-            width: 50%;
-            height: 10px;
-        }
-        #outer-slider{
-            background: rgba(#fff,0.5)
-        }
-        #inner-slider{
-            background: #fff;
-            width: 50%;
-        }
 
+            .slider{
+                width: 50%;
+                max-width: 200px;
+                height: 10px;
+            }
+            #outer-slider{
+                background: rgba(#fff,0.5)
+            }
+            #inner-slider{
+                background: #fff;
+                width: 50%;
+            }
+        }
         
     }
     //seeker-bar

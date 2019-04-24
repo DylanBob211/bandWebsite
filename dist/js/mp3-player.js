@@ -1,13 +1,13 @@
-import {removeLastFaToken} from './abstract.js';
+import {volBtnIcon, updateSongDuration} from './abstract.js';
 
 export const playBtn = document.getElementById("play");
 export const backBtn = document.getElementById("back");
 export const nextBtn = document.getElementById("next");
 const listBtn = document.getElementById("list");
-export const volBtn = document.getElementById("volume");
+
 
 export let songList = [];
-let currentSong = 2;
+export let currentSong = 0;
 
 // songList[currentSong] e' la canzone caricata sull'mp3
 //back button
@@ -27,7 +27,8 @@ export function prevSong(){
         }
         songList[currentSong].play();
     }
-    console.log(currentSong)
+    updateSongDuration(songList[currentSong]);
+    console.log(songList[currentSong]);
 }
 
 //next button
@@ -47,7 +48,8 @@ export function nextSong(){
         }
         songList[currentSong].play();
     }
-    console.log(currentSong)
+    updateSongDuration(songList[currentSong]);
+    console.log(songList[currentSong]);
 }
 
 //play/pause button
@@ -57,6 +59,7 @@ export function toggleSong() {
         //action
         console.log(songList[currentSong].duration);
         songList[currentSong].play();
+        updateSongd
         //style
         playBtn.classList.remove('fa-play')
         playBtn.classList.add('fa-pause')
@@ -75,40 +78,26 @@ export function toggleSong() {
 }
 
 
-//da fare
-//volume up-down
 
 
-function volBtnIcon(song){
-    if(song.volume == 0){
-        removeLastFaToken(volBtn);
-        volBtn.classList.add('fa-volume-off')
-        
-    } else if(song.volume <= 0.5){
-        removeLastFaToken(volBtn);
-        volBtn.classList.add('fa-volume-down')
-        
-    } else if(song.volume < 1.0){
-        removeLastFaToken(volBtn);
-        volBtn.classList.add('fa-volume-up')
-        
-    }
-}
+
 
 
 export const volumeOuter = document.querySelector('#outer-slider');
-export const volumeInner = document.querySelector('#inner-slider');
 
-
-export function updateBar(x, vol){
+export function updateVolBar(x, vol){
+    
+    const volumeInner = document.querySelector('#inner-slider');
+    
     let volume = volumeOuter;
+    let list = listBtn;
     var percentage;
         //if only volume have specificed
         //then direct update volume
         if (vol) {
             percentage = vol * 100;
         } else {
-            var position = x - volume.offsetLeft;
+            var position = x - volume.offsetLeft - (list.clientWidth / 2);
             percentage = 100 * position / volume.clientWidth;
         }
 
@@ -123,3 +112,4 @@ export function updateBar(x, vol){
 
         volBtnIcon(songList[currentSong]);
 }
+

@@ -11,7 +11,7 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
-<body>
+<body onload="showCurrentTitle()">
     <header>
 
         <!--Fixed Bar-->
@@ -71,12 +71,15 @@
 
         <div id="mp3-player" class="center--floated">
             <div id="song-image"></div>
-            <h3 id="songtitle">Slippin into darkness</h3>
+            <h3 id="songtitle"></h3>
             <h4 id="songauthor">Marcus Miller</h4>
             <div id="xtra-btns">
                 <i id="list" class="mp3_btns fa fa-list"></i>
-                <i id="volume" class="mp3_btns fa fa-volume-up"></i>
-                <div id="outer-slider" class="slider"><div id="inner-slider" class="slider"></div></div>
+                <div id="volset">
+                    <i id="volume" class="mp3_btns fa fa-volume-up"></i>
+                    <div id="outer-slider" class="slider"><div id="inner-slider" class="slider"></div></div>
+                </div>
+                
             </div>
             <div id="song-bar" data-before="0.00" data-after="5.00">
 
@@ -138,7 +141,9 @@
         <h5>La Madonna &COPY;</h5>
         <h6>Powered By Me</h6>
     </footer>
-    <script type="module" src="/node_modules/howler/dist/howler.js"></script>
+    <script>
+        
+    </script>
     <script src="./js/main.js" type="module"></script>
 </body>
 

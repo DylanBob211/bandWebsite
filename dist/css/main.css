@@ -137,14 +137,20 @@ nav ul {
     #mp3-player #xtra-btns i {
       border: none;
       font-size: 1.5rem; }
-    #mp3-player #xtra-btns .slider {
-      width: 50%;
-      height: 10px; }
-    #mp3-player #xtra-btns #outer-slider {
-      background: rgba(255, 255, 255, 0.5); }
-    #mp3-player #xtra-btns #inner-slider {
-      background: #fff;
-      width: 50%; }
+    #mp3-player #xtra-btns #volset {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%; }
+      #mp3-player #xtra-btns #volset .slider {
+        width: 50%;
+        max-width: 200px;
+        height: 10px; }
+      #mp3-player #xtra-btns #volset #outer-slider {
+        background: rgba(255, 255, 255, 0.5); }
+      #mp3-player #xtra-btns #volset #inner-slider {
+        background: #fff;
+        width: 50%; }
   #mp3-player #song-bar {
     height: .2rem;
     margin: 0 auto;
