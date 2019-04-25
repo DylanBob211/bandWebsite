@@ -1,4 +1,5 @@
-import {volBtnIcon, updateSongDuration} from './abstract.js';
+import {volBtnIcon, songDataUpdate} from './abstract.js';
+import  { Song } from './songs.js'
 
 export const playBtn = document.getElementById("play");
 export const backBtn = document.getElementById("back");
@@ -27,8 +28,10 @@ export function prevSong(){
         }
         songList[currentSong].play();
     }
-    updateSongDuration(songList[currentSong]);
-    console.log(songList[currentSong]);
+    songDataUpdate(songList[currentSong]);
+    
+    console.log(currentSong);
+    console.log(songList[currentSong].volume);
 }
 
 //next button
@@ -48,8 +51,10 @@ export function nextSong(){
         }
         songList[currentSong].play();
     }
-    updateSongDuration(songList[currentSong]);
-    console.log(songList[currentSong]);
+    songDataUpdate(songList[currentSong]);
+    
+    console.log(currentSong);
+    console.log(songList[currentSong].volume);
 }
 
 //play/pause button
@@ -59,7 +64,6 @@ export function toggleSong() {
         //action
         console.log(songList[currentSong].duration);
         songList[currentSong].play();
-        updateSongd
         //style
         playBtn.classList.remove('fa-play')
         playBtn.classList.add('fa-pause')
@@ -108,7 +112,11 @@ export function updateVolBar(x, vol){
             percentage = 0;
         }
         volumeInner.style.width = percentage + "%";
-        songList[currentSong].volume = percentage / 100;
+        //songList[currentSong].volume = percentage / 100;
+        songList.forEach( el => {
+            el.volume = percentage / 100;
+        })  
+        console.log(songList[currentSong].volume) 
 
         volBtnIcon(songList[currentSong]);
 }

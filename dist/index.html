@@ -11,7 +11,7 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
-<body onload="showCurrentTitle()">
+<body onload="loadUpdates()">
     <header>
 
         <!--Fixed Bar-->
@@ -72,7 +72,7 @@
         <div id="mp3-player" class="center--floated">
             <div id="song-image"></div>
             <h3 id="songtitle"></h3>
-            <h4 id="songauthor">Marcus Miller</h4>
+            <h4 id="songauthor"></h4>
             <div id="xtra-btns">
                 <i id="list" class="mp3_btns fa fa-list"></i>
                 <div id="volset">
@@ -81,7 +81,7 @@
                 </div>
                 
             </div>
-            <div id="song-bar" data-before="0.00" data-after="5.00">
+            <div id="song-bar" data-before="0.00" data-after="">
 
                 <div id="bar-pointer"></div>
             </div>

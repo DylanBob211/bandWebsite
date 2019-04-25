@@ -10,6 +10,7 @@ import { playBtn, backBtn, nextBtn, songList,
 
 import { Song } from './songs.js';
 
+import { songDataUpdate } from './abstract.js'
 
 
 
@@ -33,20 +34,19 @@ nextBtn.addEventListener('click', nextSong);
 
 //body onload updates
 document.querySelector('body').onload = function loadUpdates(){
-    titleUpdate();
-    
+    songDataUpdate(songList[currentSong]);  
+    songList[currentSong].volume = 0.5;
+    updateVolBar(null, songList[currentSong].volume)
 }
-function titleUpdate() {
-    const title = document.querySelector('#songtitle');
 
-    title.innerHTML = songList[currentSong].title;
-}
+
+
 
 // volume in dragging
 
 let drag = false;
 
-volumeOuter.addEventListener('mousedown', ev =>{
+volumeOuter.addEventListener('mousedown', ev => {
     drag = true;
     updateVolBar(ev.clientX);
 });
@@ -64,19 +64,6 @@ const songBar = document.getElementById("song-bar");
 const pointer = songBar.querySelector('#bar-pointer');
 
 
-
-
-//da rifare tutto con calma e criterio
-//fai una funzione che prende come paramentri la canzone in corso, la posizione del mouse dal dragging, 
-function updateSongSeeker(totalSeconds){
-    //totale in percentuale
-    var percentage = totalSeconds * 100;
-    // 1 percento
-    
-}   
-//setta il momento della canzone alla nuova durata indicata dal cursore
-        //per far cio serve sapere la posizione del cursore in relazioen alla barra della canzone
-    //sposta il puntatore alla posizione 
 
 
 

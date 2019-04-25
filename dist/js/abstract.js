@@ -1,3 +1,4 @@
+
 function removeLastFaToken(btn){
     btn.classList.forEach( el => {
         if(el === "fa" || el === "mp3-btns"){
@@ -27,7 +28,7 @@ export function volBtnIcon(song){
 
 export function updateSongDuration(song) {
     //change time next to the bar
-    let songbar = document.querySelector('#song-bar');
+    const songbar = document.querySelector('#song-bar');
     let totalDuration = sec2time(song.duration);
     songbar.setAttribute('data-after', totalDuration);
     
@@ -42,4 +43,14 @@ function sec2time(timeInSeconds) {
     milliseconds = time.slice(-3);
 
     return pad(minutes, 1) + '.' + pad(seconds, 2);
+}
+
+export function songDataUpdate(song) {
+    const title = document.querySelector('#songtitle');
+    const author = document.querySelector('#songauthor');
+
+    title.innerHTML = song.title;
+    author.innerHTML = song.author;
+
+    updateSongDuration(song);
 }
