@@ -171,6 +171,7 @@ nav ul {
       left: 85%; }
     #mp3-player #song-bar #bar-pointer {
       position: relative;
+      left: 0;
       border-radius: 50%;
       bottom: .5rem;
       width: 1rem;

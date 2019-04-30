@@ -1,4 +1,4 @@
-import {toggleMenu} from './menu.js';
+import { toggleMenu } from './menu.js';
 
 //toggle menu-nav
 const threeLinesMenu = document.querySelector('.menu-btn');
@@ -28,7 +28,7 @@ evans.addToTracklist(songList);
 
 //mp3 player main btns
 
-playBtn.addEventListener('click', toggleSong);
+playBtn.addEventListener('click', () => {toggleSong(songList[currentSong])});
 backBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
 
@@ -59,9 +59,6 @@ document.addEventListener('mousemove', ev =>{
         updateVolBar(ev.clientX);
     }
 });
-
-const songBar = document.getElementById("song-bar");
-const pointer = songBar.querySelector('#bar-pointer');
 
 
 

@@ -1,14 +1,14 @@
-import {volBtnIcon, songDataUpdate} from './abstract.js';
-import  { Song } from './songs.js'
+import {volBtnIcon, songDataUpdate, setSongCurrentTimeOnScreen } from './abstract.js';
 
 export const playBtn = document.getElementById("play");
 export const backBtn = document.getElementById("back");
 export const nextBtn = document.getElementById("next");
 const listBtn = document.getElementById("list");
-
+const pointer = document.querySelector('#bar-pointer');
+const bar = document.querySelector('#song-bar');
 
 export let songList = [];
-export let currentSong = 0;
+export let currentSong = 1;
 
 // songList[currentSong] e' la canzone caricata sull'mp3
 //back button
@@ -59,27 +59,48 @@ export function nextSong(){
 
 //play/pause button
 
-export function toggleSong() {
-    if(songList[currentSong].paused){
+export function toggleSong(song) {
+    if(song.paused){
         //action
-        console.log(songList[currentSong].duration);
-        songList[currentSong].play();
+        console.log(song.duration);
+        song.play();
         //style
         playBtn.classList.remove('fa-play')
         playBtn.classList.add('fa-pause')
         playBtn.classList.add("pressed");
-
+        requestAnimationFrame(function(timestamp){
+            starttime = timestamp || new Date().getTime();
+            moveBar(timestamp, pointer, bar.clientWidth, song.duration * 1000)
+        })
+            
     } else {
         //action
-        songList[currentSong].pause();
+        song.pause();
         //style
         playBtn.classList.remove('pressed')
         playBtn.classList.remove('fa-pause');
         playBtn.classList.remove("pressed");
         playBtn.classList.add('fa-play');
-        
+    }
+    
+}
+
+var starttime;
+
+function moveBar(timestamp, el, dist, duration){
+    var timestamp = timestamp || new Date().getTime(); //segna il tempo iniziale
+    var runtime = timestamp - starttime //quanto tempo e' passato
+    var progress = (runtime / duration) * 100; //in percentuale
+    el.style.left = progress + '%'; //sposta il cursore
+    setSongCurrentTimeOnScreen(songList[currentSong]); //setta il tempo trascorso
+    if(runtime < duration){
+        requestAnimationFrame(function(timestamp){
+            moveBar(timestamp, el, dist, duration);
+        })
     }
 }
+
+
 
 
 
@@ -112,7 +133,7 @@ export function updateVolBar(x, vol){
             percentage = 0;
         }
         volumeInner.style.width = percentage + "%";
-        //songList[currentSong].volume = percentage / 100;
+        
         songList.forEach( el => {
             el.volume = percentage / 100;
         })  
@@ -120,4 +141,17 @@ export function updateVolBar(x, vol){
 
         volBtnIcon(songList[currentSong]);
 }
+
+
+
+
+
+
+
+function songCurrentTime(timestamp, song){
+
+    setSongCurrentTimeOnScreen(song);
+
+}
+
 

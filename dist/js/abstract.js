@@ -1,4 +1,3 @@
-
 function removeLastFaToken(btn){
     btn.classList.forEach( el => {
         if(el === "fa" || el === "mp3-btns"){
@@ -8,6 +7,7 @@ function removeLastFaToken(btn){
         }
     })
 }
+
 export function volBtnIcon(song){
     const volBtn = document.getElementById("volume");
     
@@ -53,4 +53,9 @@ export function songDataUpdate(song) {
     author.innerHTML = song.author;
 
     updateSongDuration(song);
+}
+
+export function setSongCurrentTimeOnScreen(song){
+    const songBar = document.querySelector('#song-bar');
+    songBar.setAttribute('data-before', sec2time(song.currentTime));   
 }
