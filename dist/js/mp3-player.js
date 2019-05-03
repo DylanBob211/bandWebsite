@@ -1,4 +1,5 @@
 import {volBtnIcon, songDataUpdate, setSongCurrentTimeOnScreen } from './abstract.js';
+import { Song } from './songs.js'
 
 export const playBtn = document.getElementById("play");
 export const backBtn = document.getElementById("back");
@@ -8,11 +9,24 @@ const pointer = document.querySelector('#bar-pointer');
 const bar = document.querySelector('#song-bar');
 
 export let songList = [];
-export let currentSong = 1;
+export let currentSong = 2;
+//canzoni nella cartella audio
+const tiktok = new Song('Tik Tok', 'Kesha', './audio/Kesha-TiK ToK.mp3');
+const test = new Song('Russian', 'rusfolks', './audio/test.mp3');
+const evans = new Song('Spartacus Love Theme', 'Bill Evans', './audio/Spartacus Love Theme - Bill Evans Solo.mp3');
+
+//aggiunte alla tracklist
+tiktok.addToTracklist(songList);
+test.addToTracklist(songList);
+evans.addToTracklist(songList);
 
 // songList[currentSong] e' la canzone caricata sull'mp3
 //back button
 export function prevSong(){
+    
+    cancelAnimationFrame(requestMovebarAnimationReference)
+    resetProgressBar();
+
     if(songList[currentSong].paused){
         
         currentSong--;
@@ -27,6 +41,10 @@ export function prevSong(){
             currentSong = 0;
         }
         songList[currentSong].play();
+        requestAnimationFrame(function(timestamp){
+            starttime = timestamp || new Date().getTime();
+            moveBar(timestamp, pointer, bar.clientWidth, songList[currentSong])
+        })
     }
     songDataUpdate(songList[currentSong]);
     
@@ -36,6 +54,9 @@ export function prevSong(){
 
 //next button
 export function nextSong(){
+    cancelAnimationFrame(requestMovebarAnimationReference);
+    resetProgressBar();
+
     if(songList[currentSong].paused){
         
         currentSong++;
@@ -50,6 +71,10 @@ export function nextSong(){
             currentSong = 0;
         }
         songList[currentSong].play();
+        requestAnimationFrame(function(timestamp){
+            starttime = timestamp || new Date().getTime();
+            moveBar(timestamp, pointer, bar.clientWidth, songList[currentSong])
+        })
     }
     songDataUpdate(songList[currentSong]);
     
@@ -68,9 +93,10 @@ export function toggleSong(song) {
         playBtn.classList.remove('fa-play')
         playBtn.classList.add('fa-pause')
         playBtn.classList.add("pressed");
+        //start bar animation
         requestAnimationFrame(function(timestamp){
             starttime = timestamp || new Date().getTime();
-            moveBar(timestamp, pointer, bar.clientWidth, song.duration * 1000)
+            moveBar(timestamp, pointer, bar.clientWidth, song)
         })
             
     } else {
@@ -81,24 +107,36 @@ export function toggleSong(song) {
         playBtn.classList.remove('fa-pause');
         playBtn.classList.remove("pressed");
         playBtn.classList.add('fa-play');
+        //stop animation
+
     }
     
 }
 
 var starttime;
+var requestMovebarAnimationReference;
 
-function moveBar(timestamp, el, dist, duration){
+function moveBar(timestamp, el, dist, song){
     var timestamp = timestamp || new Date().getTime(); //segna il tempo iniziale
-    var runtime = timestamp - starttime //quanto tempo e' passato
-    var progress = (runtime / duration) * 100; //in percentuale
+    var progress = (song.currentTime / song.duration) * 100; //in percentuale
+    console.log(`progress: ${progress}`)
     el.style.left = progress + '%'; //sposta il cursore
     setSongCurrentTimeOnScreen(songList[currentSong]); //setta il tempo trascorso
-    if(runtime < duration){
-        requestAnimationFrame(function(timestamp){
-            moveBar(timestamp, el, dist, duration);
+    if(song.currentTime < song.duration && !song.paused){
+        requestMovebarAnimationReference = requestAnimationFrame(function(timestamp){
+            moveBar(timestamp, el, dist, song);
         })
+        console.log(requestMovebarAnimationReference)
     }
 }
+
+function resetProgressBar(){
+    const pointer = document.querySelector('#bar-pointer');
+    pointer.style.left = 0;
+    
+}
+
+//quando cambi canzone tutti i progressi in quella precedente vanno resettati
 
 
 
@@ -142,16 +180,5 @@ export function updateVolBar(x, vol){
         volBtnIcon(songList[currentSong]);
 }
 
-
-
-
-
-
-
-function songCurrentTime(timestamp, song){
-
-    setSongCurrentTimeOnScreen(song);
-
-}
 
 

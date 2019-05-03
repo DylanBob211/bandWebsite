@@ -53,6 +53,7 @@ export function songDataUpdate(song) {
     author.innerHTML = song.author;
 
     updateSongDuration(song);
+    setSongCurrentTimeOnScreen(song);
 }
 
 export function setSongCurrentTimeOnScreen(song){

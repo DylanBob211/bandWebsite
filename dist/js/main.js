@@ -16,15 +16,7 @@ import { songDataUpdate } from './abstract.js'
 
 
 
-//canzoni nella cartella audio
-const tiktok = new Song('Tik Tok', 'Kesha', './audio/Kesha-TiK ToK.mp3');
-const test = new Song('Russian', 'rusfolks', './audio/test.mp3');
-const evans = new Song('Spartacus Love Theme', 'Bill Evans', './audio/Spartacus Love Theme - Bill Evans Solo.mp3');
 
-//aggiunte alla tracklist
-tiktok.addToTracklist(songList);
-test.addToTracklist(songList);
-evans.addToTracklist(songList);
 
 //mp3 player main btns
 
