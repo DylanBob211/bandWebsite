@@ -62,7 +62,9 @@ document.addEventListener('mousemove', ev =>{
 
 bar.addEventListener('mousedown', ev => {
     dragSongBar = true;
-    updateSongBar(ev.clientX)
+    songList[currentSong].pause();
+    updateSongBar(ev.clientX);
+    songList[currentSong].play();
 })
 
 

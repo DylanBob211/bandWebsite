@@ -189,6 +189,9 @@ export function updateSongBar(x, currenttime){
         percentage = 0;
     }
     pointer.style.left = percentage + "%";
+    songList[currentSong].currentTime = percentage / 100 * songList[currentSong].duration;
     setSongCurrentTimeOnScreen(songList[currentSong]);
+    cancelAnimationFrame(requestMovebarAnimationReference);
+    
 }   
 
