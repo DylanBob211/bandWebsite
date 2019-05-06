@@ -6,7 +6,7 @@ export const backBtn = document.getElementById("back");
 export const nextBtn = document.getElementById("next");
 const listBtn = document.getElementById("list");
 const pointer = document.querySelector('#bar-pointer');
-const bar = document.querySelector('#song-bar');
+export const bar = document.querySelector('#song-bar');
 
 export let songList = [];
 export let currentSong = 2;
@@ -20,12 +20,14 @@ tiktok.addToTracklist(songList);
 test.addToTracklist(songList);
 evans.addToTracklist(songList);
 
-// songList[currentSong] e' la canzone caricata sull'mp3
+var starttime;
 //back button
 export function prevSong(){
-    
+
     cancelAnimationFrame(requestMovebarAnimationReference)
-    resetProgressBar();
+    pointer.style.left = 0;
+    //resent old data
+    songList[currentSong].currentTime = 0;
 
     if(songList[currentSong].paused){
         
@@ -46,6 +48,7 @@ export function prevSong(){
             moveBar(timestamp, pointer, bar.clientWidth, songList[currentSong])
         })
     }
+    //update newdata
     songDataUpdate(songList[currentSong]);
     
     console.log(currentSong);
@@ -55,7 +58,10 @@ export function prevSong(){
 //next button
 export function nextSong(){
     cancelAnimationFrame(requestMovebarAnimationReference);
-    resetProgressBar();
+
+    pointer.style.left = 0;
+    //resent old data
+    songList[currentSong].currentTime = 0;
 
     if(songList[currentSong].paused){
         
@@ -83,7 +89,6 @@ export function nextSong(){
 }
 
 //play/pause button
-
 export function toggleSong(song) {
     if(song.paused){
         //action
@@ -113,13 +118,16 @@ export function toggleSong(song) {
     
 }
 
-var starttime;
+//bar moving on play animation
 var requestMovebarAnimationReference;
 
 function moveBar(timestamp, el, dist, song){
+
     var timestamp = timestamp || new Date().getTime(); //segna il tempo iniziale
     var progress = (song.currentTime / song.duration) * 100; //in percentuale
+    
     console.log(`progress: ${progress}`)
+
     el.style.left = progress + '%'; //sposta il cursore
     setSongCurrentTimeOnScreen(songList[currentSong]); //setta il tempo trascorso
     if(song.currentTime < song.duration && !song.paused){
@@ -130,22 +138,7 @@ function moveBar(timestamp, el, dist, song){
     }
 }
 
-function resetProgressBar(){
-    const pointer = document.querySelector('#bar-pointer');
-    pointer.style.left = 0;
-    
-}
-
-//quando cambi canzone tutti i progressi in quella precedente vanno resettati
-
-
-
-
-
-
-
-
-
+//volume regulation
 export const volumeOuter = document.querySelector('#outer-slider');
 
 export function updateVolBar(x, vol){
@@ -180,5 +173,22 @@ export function updateVolBar(x, vol){
         volBtnIcon(songList[currentSong]);
 }
 
-
+export function updateSongBar(x, currenttime){
+    let songBar = bar;
+    var percentage;
+    if(currenttime){
+        percentage = currrenttime * 100;
+    } else {
+        var position = x - songBar.offsetLeft;
+        percentage = 100 * position / songBar.clientWidth;
+    }
+    if (percentage > 100) {
+        percentage = 100;
+    }
+    if (percentage < 0) {
+        percentage = 0;
+    }
+    pointer.style.left = percentage + "%";
+    setSongCurrentTimeOnScreen(songList[currentSong]);
+}   
 

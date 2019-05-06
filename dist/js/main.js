@@ -6,9 +6,8 @@ threeLinesMenu.addEventListener("click", toggleMenu);
 
 import { playBtn, backBtn, nextBtn, songList,
      toggleSong, nextSong, prevSong,
-      volumeOuter, updateVolBar, currentSong} from "./mp3-player.js";
-
-import { Song } from './songs.js';
+      volumeOuter, updateVolBar, currentSong,
+    bar, updateSongBar } from "./mp3-player.js";
 
 import { songDataUpdate } from './abstract.js'
 
@@ -34,26 +33,37 @@ document.querySelector('body').onload = function loadUpdates(){
 
 
 
-// volume in dragging
+// volume change when dragging
 
-let drag = false;
+let dragVolumeBar = false;
+let dragSongBar = false;
 
 volumeOuter.addEventListener('mousedown', ev => {
-    drag = true;
+    dragVolumeBar = true;
     updateVolBar(ev.clientX);
 });
 document.addEventListener('mouseup', () => {
-    drag = false;
+    dragVolumeBar = false;
+    dragSongBar = false;
 })
 
 document.addEventListener('mousemove', ev =>{
-    if(drag){
+    if(dragVolumeBar){
         updateVolBar(ev.clientX);
+    }
+    if(dragSongBar){
+        updateSongBar(ev.clientX);
     }
 });
 
 
+// set song current time when dragging
 
+
+bar.addEventListener('mousedown', ev => {
+    dragSongBar = true;
+    updateSongBar(ev.clientX)
+})
 
 
 
