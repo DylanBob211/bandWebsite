@@ -9,7 +9,7 @@ import { playBtn, backBtn, nextBtn, songList,
       volumeOuter, updateVolBar, currentSong,
     bar, updateSongBar } from "./mp3-player.js";
 
-import { songDataUpdate } from './abstract.js'
+import { songDataUpdate, volBtnIcon, removeLastFaToken } from './abstract.js'
 
 
 
@@ -29,9 +29,6 @@ document.querySelector('body').onload = function loadUpdates(){
     songList[currentSong].volume = 0.5;
     updateVolBar(null, songList[currentSong].volume)
 }
-
-
-
 
 // volume change when dragging
 
@@ -67,16 +64,24 @@ bar.addEventListener('mousedown', ev => {
     songList[currentSong].play();
 })
 
+const volBtn = document.querySelector('#volume')
 
+volBtn.addEventListener('click', ev => {
+    if(!songList[currentSong].muted) {
+        songList[currentSong].muted = true;
+        removeLastFaToken(volBtn);
+        volBtn.classList.add('fa-volume-mute');
+    } else {
+        songList[currentSong].muted = false;
+        removeLastFaToken(volBtn);
+        volBtnIcon(songList[currentSong]);
+    }
+    
+})
 
 //FAI PULIZIA IN _mp3-player.scss
-
-//SISTEMA LA QUESTIONE DELLA DURATA E LA PROGRESSIONE DEL BRANO
 
 //CREA UNA SERIE DI CANZONI E FAI LA TRACKLIST
 //STILIZZA LA TRACKLIST E LA POSIZIONE IN LANDSCAPE
 //SISTEMA IL BOTTONE TRACKLIST
-
-
-
 
