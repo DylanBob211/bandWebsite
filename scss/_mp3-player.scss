@@ -173,11 +173,6 @@
         justify-content: space-around;
         align-items: center;
         
-
-        
-
-            
-        
     }
     
 
@@ -214,6 +209,10 @@
                     @include softly;
                     cursor: default;
                 }
+            }
+
+            .selected{
+                background-color: rgba(darken($orange, 20), 0.7);
             }
         }
 

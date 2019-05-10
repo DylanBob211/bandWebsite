@@ -1,3 +1,5 @@
+import { songList } from "./mp3-player.js";
+
 export class Song extends Audio{
     constructor(title, author, src, poster){
         
@@ -5,6 +7,9 @@ export class Song extends Audio{
         this._title = title;
         this._author = author;
         this.poster = poster;
+
+        this.addToTracklist(songList);
+        
 
     }
     
@@ -19,6 +24,7 @@ export class Song extends Audio{
     addToTracklist(array){
         array.push(this);
     }
+    
     stop(){
         this.pause();
         this.currentTime = 0;

@@ -1,34 +1,48 @@
 import {volBtnIcon, songDataUpdate, setSongCurrentTimeOnScreen } from './abstract.js';
 import { Song } from './songs.js'
 
-export const playBtn = document.getElementById("play");
-export const backBtn = document.getElementById("back");
-export const nextBtn = document.getElementById("next");
+const playBtn = document.getElementById("play");
+const backBtn = document.getElementById("back");
+const nextBtn = document.getElementById("next");
 const listBtn = document.getElementById("list");
 const pointer = document.querySelector('#bar-pointer');
-export const bar = document.querySelector('#song-bar');
+const bar = document.querySelector('#song-bar');
 
 export let songList = [];
-export let currentSong = 2;
+export let currentSong = 1;
 //canzoni nella cartella audio
+
 const tiktok = new Song('Tik Tok', 'Kesha', './audio/Kesha-TiK ToK.mp3');
 const test = new Song('Russian', 'rusfolks', './audio/test.mp3');
 const evans = new Song('Spartacus Love Theme', 'Bill Evans', './audio/Spartacus Love Theme - Bill Evans Solo.mp3');
+const miller = new Song('Detroit', 'Marcus Miller', './audio/Miller-Detroit.mp3');
 
-//aggiunte alla tracklist
-tiktok.addToTracklist(songList);
-test.addToTracklist(songList);
-evans.addToTracklist(songList);
+songList.forEach( (song, index)=> {
+    let newElement = document.createElement('li');
+    let textInElement = document.createTextNode(song.title);
+    newElement.appendChild(textInElement);
+    const list = document.querySelector('#songlist').childNodes[1];
+    list.appendChild(newElement);
+    newElement.classList.add('song-item');
+    if(index == currentSong){
+        newElement.classList.add('selected');
+    }
+})
 
-var starttime;
+
+playBtn.addEventListener('click', () => {toggleSong(songList[currentSong])});
+backBtn.addEventListener('click', () => {prevSong(songList[currentSong])});
+nextBtn.addEventListener('click', () => {nextSong(songList[currentSong], songList)});
+
+//bug quando non stoppo e voglio cambiare canzone 
+//probabilmente perche quando clicco sul pulzante lui rilegge il vecchio current song
 //back button
-export function prevSong(){
-
+function prevSong(){
     cancelAnimationFrame(requestMovebarAnimationReference)
     pointer.style.left = 0;
     //resent old data
     songList[currentSong].currentTime = 0;
-
+    
     if(songList[currentSong].paused){
         
         currentSong--;
@@ -36,10 +50,9 @@ export function prevSong(){
             currentSong = 0;
         }    
     } else {
-        
-        songList[currentSong].stop();
+                songList[currentSong].stop();
         currentSong--;
-        if(currentSong < 0){
+                if(currentSong < 0){
             currentSong = 0;
         }
         songList[currentSong].play();
@@ -51,12 +64,10 @@ export function prevSong(){
     //update newdata
     songDataUpdate(songList[currentSong]);
     
-    console.log(currentSong);
-    console.log(songList[currentSong].volume);
 }
 
 //next button
-export function nextSong(){
+function nextSong(){
     cancelAnimationFrame(requestMovebarAnimationReference);
 
     pointer.style.left = 0;
@@ -84,12 +95,10 @@ export function nextSong(){
     }
     songDataUpdate(songList[currentSong]);
     
-    console.log(currentSong);
-    console.log(songList[currentSong].volume);
 }
 
 //play/pause button
-export function toggleSong(song) {
+function toggleSong(song) {
     if(song.paused){
         //action
         console.log(song.duration);
@@ -120,13 +129,11 @@ export function toggleSong(song) {
 
 //bar moving on play animation
 var requestMovebarAnimationReference;
-
+var starttime;
 function moveBar(timestamp, el, dist, song){
 
     var timestamp = timestamp || new Date().getTime(); //segna il tempo iniziale
     var progress = (song.currentTime / song.duration) * 100; //in percentuale
-    
-    console.log(`progress: ${progress}`)
 
     el.style.left = progress + '%'; //sposta il cursore
     setSongCurrentTimeOnScreen(songList[currentSong]); //setta il tempo trascorso
@@ -134,12 +141,11 @@ function moveBar(timestamp, el, dist, song){
         requestMovebarAnimationReference = requestAnimationFrame(function(timestamp){
             moveBar(timestamp, el, dist, song);
         })
-        console.log(requestMovebarAnimationReference)
     }
 }
 
 //volume regulation
-export const volumeOuter = document.querySelector('#outer-slider');
+const volumeOuter = document.querySelector('#outer-slider');
 
 export function updateVolBar(x, vol){
     
@@ -173,6 +179,26 @@ export function updateVolBar(x, vol){
         volBtnIcon(songList[currentSong]);
 }
 
+const volBtn = document.querySelector('#volume')
+//volume muted
+volBtn.addEventListener('click', ev => {
+    if(!songList[currentSong].muted) {
+        //action
+        songList[currentSong].muted = true;
+        //style
+        removeLastFaToken(volBtn);
+        volBtn.classList.add('fa-volume-mute');
+    } else {
+        //action
+        songList[currentSong].muted = false;
+        //style
+        removeLastFaToken(volBtn);
+        volBtnIcon(songList[currentSong]);
+    }
+    
+})
+
+//song seeker
 export function updateSongBar(x, currenttime){
     let songBar = bar;
     var percentage;
@@ -194,4 +220,37 @@ export function updateSongBar(x, currenttime){
     cancelAnimationFrame(requestMovebarAnimationReference);
     
 }   
+
+let dragVolumeBar = false;
+let dragSongBar = false;
+
+volumeOuter.addEventListener('mousedown', ev => {
+    dragVolumeBar = true;
+    updateVolBar(ev.clientX);
+});
+document.addEventListener('mouseup', () => {
+    dragVolumeBar = false;
+    dragSongBar = false;
+})
+
+document.addEventListener('mousemove', ev =>{
+    if(dragVolumeBar){
+        updateVolBar(ev.clientX);
+    }
+    if(dragSongBar){
+        updateSongBar(ev.clientX);
+    }
+});
+
+
+// set song current time when dragging
+
+
+bar.addEventListener('mousedown', ev => {
+    dragSongBar = true;
+    songList[currentSong].pause();
+    updateSongBar(ev.clientX);
+    songList[currentSong].play();
+})
+
 

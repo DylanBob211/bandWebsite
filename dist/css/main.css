@@ -212,6 +212,8 @@ nav ul {
         background-color: rgba(141, 85, 0, 0.7);
         transition: all .3s ease-in-out;
         cursor: default; }
+    #songlist ul .selected {
+      background-color: rgba(141, 85, 0, 0.7); }
 
 * {
   box-sizing: border-box; }
