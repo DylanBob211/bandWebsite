@@ -1,219 +1,197 @@
 #mp3-player{
+  /*container*/
+  width: 70%;
+  height: 70%;
+  box-sizing: content-box;
+  padding: 10%;
 
-    /*container*/
+  background-color: rgba(darken($orange, 5), 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
+  @media (orientation: landscape){
+      float: left;
+      margin: 0 auto;
+      width: 35%;
+  }
+  
+  /*btn-icons*/
+  i{  
 
-    width: 70%;
-    height: 70%;
-    box-sizing: content-box;
-    padding: 10%;
+    border: 2px solid #fff;
+    padding: .6rem;
+    border-radius: 50%;
+    color: #fff;
 
-    background-color: rgba(darken($orange, 5), 0.5);
+    &:hover{
+      color: darken($orange, 5);
+      border: 5px solid darken($orange, 5);
+      @include softly;
+    }
+
+    @media (orientation: landscape){
+      &#list{
+        display: none;
+      }
+    }
+    // animation
+    &.pressed{
+      @include softly;
+      transform: rotateY(180deg);
+    }
+
+    &#play{
+      margin-top: 20px;
+      padding: 1.3rem;
+      font-size: 1.3em;
+    }
+  }
+
+  //immagine
+  #song-image{
+    display: none;
+    align-self: stretch;
+    background: url(https://source.unsplash.com/800x600);
+    background-size: cover;
+    background-position: center; 
+    flex: 3
+  }
+  //titolo
+  #songtitle{
+    text-overflow: ellipsis;
+    text-align: center;
+    color: #fff;
+    flex: .25
+  }
+  //autore 
+  #songauthor{
+    text-align: center;
+    color: rgba(#fff, 0.8);
+    flex: .25;
+  }
+  //volume e lista
+  #xtra-btns{
+    width: 90%;
+    flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    i{
+      border: none;
+      font-size: 1.5rem;
+    }
+    #volset{
+      
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+
+      .slider{
+        width: 50%;
+        max-width: 200px;
+        height: 10px;
+      }
+      #outer-slider{
+        background: rgba(#fff,0.5)
+      }
+      #inner-slider{
+        background: #fff;
+        width: 50%;
+      }
+    } 
+  }
+  //seeker-bar
+  #song-bar{
+    height: .2rem;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 70%;
+    background-color: #fff;
+    flex-shrink: 1;
+    display: flex;
+    
+    //current time
+    &:before{
+        content: attr(data-before);
+        color: #fff;
+        position: absolute;
+        right: 85%;
+    }
+    //duration
+    &:after{
+        content: attr(data-after);
+        color: #fff;
+        position: absolute;
+        left: 85%;
+    }
+      //seeker
+    #bar-pointer{
+        
+      position: relative;
+      left: 0;
+      border-radius: 50%;
+      bottom: .5rem;
+      width: 1rem;
+      height: 1rem;
+      background-color: #fff;
+      
+      &:hover{
+          cursor: pointer;
+      } 
+    }
+  }
+  //play, prev, next
+  .mp3-player-buttons{
+    margin-top:5px;
+    text-align: center;
+    width: 100%;
+    height: 10%;
+    flex: 1;
+
+    display: flex;
     justify-content: space-around;
     align-items: center;
-    
-    @media (orientation: landscape){
-        float: left;
-        margin: 0;
-        width: 50%;
-    }
-    
-    /*btn-icons*/
-
-    i{  
-        
-        border: 2px solid #fff;
-        padding: .6rem;
-        border-radius: 50%;
-        color: #fff;
-        
-
-        &:hover{
-            color: darken($orange, 5);
-            border: 5px solid darken($orange, 5);
-            @include softly;
-        }
-
-        @media (orientation: landscape){
-            &#list{
-                display: none;
-            }
-        }
-
-        &.pressed{
-            @include softly;
-            transform: rotateY(180deg);
-        }
-
-        //particular icons
-        &#play{
-            margin-top: 20px;
-            padding: 1.3rem;
-            font-size: 1.3em;
-        }
-    }
-
-    //immagine
-    #song-image{
-        align-self: stretch;
-        background: url(https://source.unsplash.com/800x600);
-        background-size: cover;
-        background-position: center; 
-        flex: 3
-    }
-    //titolo
-    #songtitle{
-        text-overflow: ellipsis;
-        text-align: center;
-        color: #fff;
-        flex: .25
-    }
-    //autore 
-    #songauthor{
-        text-align: center;
-        color: rgba(#fff, 0.8);
-        flex: .25;
-    }
-    //volume e lista
-    #xtra-btns{
-        width: 90%;
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-
-        i{
-            border: none;
-            font-size: 1.5rem;
-        }
-        #volset{
-            
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            width: 100%;
-
-
-            .slider{
-                width: 50%;
-                max-width: 200px;
-                height: 10px;
-            }
-            #outer-slider{
-                background: rgba(#fff,0.5)
-            }
-            #inner-slider{
-                background: #fff;
-                width: 50%;
-            }
-        }
-        
-    }
-    //seeker-bar
-    #song-bar{
-        height: .2rem;
-        margin: 0 auto;
-        margin-bottom: 10px;
-        width: 70%;
-        background-color: #fff;
-        flex-shrink: 1;
-        display: flex;
-        
-        //current time
-        &:before{
-            content: attr(data-before);
-            color: #fff;
-            position: absolute;
-            right: 85%;
-        }
-        //duration
-        &:after{
-            content: attr(data-after);
-            color: #fff;
-            position: absolute;
-            left: 85%;
-        }
-        //seeker
-        #bar-pointer{
-            
-            position: relative;
-            left: 0;
-            border-radius: 50%;
-            bottom: .5rem;
-            width: 1rem;
-            height: 1rem;
-            background-color: #fff;
-            
-
-            &:hover{
-                cursor: pointer;
-            }
-
-            
-        }
-
-        
-        
-        
-    }
-    
-    //play, prev, next
-
-    .mp3-player-buttons{
-        margin-top:5px;
-        text-align: center;
-        width: 100%;
-        height: 10%;
-        flex: 1;
-
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        
-    }
-    
-
-
-    
+      
+  }    
 }
 
 #songlist{
-    display: none;
+  display: block;
+  position: absolute;
+  top: 140vh;
+  overflow: hidden;
+  @media (orientation: landscape){
+      display: block;
+      width: 35%;
+      margin: 0 auto;
+      max-width: 500px;
+      height: 400px;
+      float: right;
+      background-color: rgba(darken($orange, 5), 0.5);
+  }   
 
-    @media (orientation: landscape){
-        display: block;
-        width: 45%;
-        max-width: 500px;
-        height: 400px;
-    }   
-        
-        background-color: rgba(darken($orange, 5), 0.5);
-        margin: 0 auto;
-        float: right;
-        overflow: hidden;
+  ul{
+    text-overflow: hidden;
+    .song-item{
+      font-size: 2em;
+      white-space: nowrap;
+      padding: .5rem;
+      color: #fff;
 
-        ul{
-            text-overflow: hidden;
-
-            .song-item{
-                font-size: 2em;
-                white-space: nowrap;
-                padding: .5rem;
-                color: #fff;
-
-                &:hover{
-                    background-color: rgba(darken($orange, 20), 0.7);
-                    @include softly;
-                    cursor: default;
-                }
-            }
-
-            .selected{
-                background-color: rgba(darken($orange, 20), 0.7);
-            }
-        }
-
+      &:hover{
+          background-color: rgba(darken($orange, 20), 0.7);
+          @include softly;
+          cursor: default;
+      }
+    }
+    .selected{
+      background-color: rgba(darken($orange, 20), 0.7);
+    }
+  }
 }

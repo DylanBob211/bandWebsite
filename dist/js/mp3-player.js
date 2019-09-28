@@ -1,5 +1,4 @@
-import {volBtnIcon, songDataUpdate, setSongCurrentTimeOnScreen } from './abstract.js';
-import { Song } from './songs.js'
+import { volBtnIcon, songDataUpdate, setSongCurrentTimeOnScreen, removeLastFaToken } from './abstract.js';
 
 const playBtn = document.getElementById("play");
 const backBtn = document.getElementById("back");
@@ -10,32 +9,12 @@ const bar = document.querySelector('#song-bar');
 
 export let songList = [];
 export let currentSong = 1;
-//canzoni nella cartella audio
-
-const tiktok = new Song('Tik Tok', 'Kesha', './audio/Kesha-TiK ToK.mp3');
-const test = new Song('Russian', 'rusfolks', './audio/test.mp3');
-const evans = new Song('Spartacus Love Theme', 'Bill Evans', './audio/Spartacus Love Theme - Bill Evans Solo.mp3');
-const miller = new Song('Detroit', 'Marcus Miller', './audio/Miller-Detroit.mp3');
-
-songList.forEach( (song, index)=> {
-    let newElement = document.createElement('li');
-    let textInElement = document.createTextNode(song.title);
-    newElement.appendChild(textInElement);
-    const list = document.querySelector('#songlist').childNodes[1];
-    list.appendChild(newElement);
-    newElement.classList.add('song-item');
-    if(index == currentSong){
-        newElement.classList.add('selected');
-    }
-})
 
 
 playBtn.addEventListener('click', () => {toggleSong(songList[currentSong])});
-backBtn.addEventListener('click', () => {prevSong(songList[currentSong])});
-nextBtn.addEventListener('click', () => {nextSong(songList[currentSong], songList)});
+backBtn.addEventListener('click', () => {prevSong()});
+nextBtn.addEventListener('click', () => {nextSong()});
 
-//bug quando non stoppo e voglio cambiare canzone 
-//probabilmente perche quando clicco sul pulzante lui rilegge il vecchio current song
 //back button
 function prevSong(){
     cancelAnimationFrame(requestMovebarAnimationReference)
@@ -44,15 +23,15 @@ function prevSong(){
     songList[currentSong].currentTime = 0;
     
     if(songList[currentSong].paused){
+      currentSong--;
+      if(currentSong < 0){
+          currentSong = 0;
+      }    
+    } else {
         
+        songList[currentSong].stop();
         currentSong--;
         if(currentSong < 0){
-            currentSong = 0;
-        }    
-    } else {
-                songList[currentSong].stop();
-        currentSong--;
-                if(currentSong < 0){
             currentSong = 0;
         }
         songList[currentSong].play();
@@ -63,38 +42,39 @@ function prevSong(){
     }
     //update newdata
     songDataUpdate(songList[currentSong]);
+    songSelector(songList);
     
 }
 
 //next button
-function nextSong(){
-    cancelAnimationFrame(requestMovebarAnimationReference);
+function nextSong() {
+  if(requestMovebarAnimationReference) cancelAnimationFrame(requestMovebarAnimationReference);
 
-    pointer.style.left = 0;
-    //resent old data
-    songList[currentSong].currentTime = 0;
+  pointer.style.left = 0;
+  //resent old data
+  songList[currentSong].currentTime = 0;
 
-    if(songList[currentSong].paused){
-        
-        currentSong++;
-        if(currentSong > songList.length - 1){
-            currentSong = 0;
-        }    
-    } else {
-        
-        songList[currentSong].stop();
-        currentSong++;
-        if(currentSong > songList.length - 1){
-            currentSong = 0;
-        }
-        songList[currentSong].play();
-        requestAnimationFrame(function(timestamp){
-            starttime = timestamp || new Date().getTime();
-            moveBar(timestamp, pointer, bar.clientWidth, songList[currentSong])
-        })
-    }
-    songDataUpdate(songList[currentSong]);
-    
+  if(songList[currentSong].paused){
+      
+      currentSong++;
+      if(currentSong > songList.length - 1){
+          currentSong = 0;
+      }    
+  } else {
+      
+      songList[currentSong].stop();
+      currentSong++;
+      if(currentSong > songList.length - 1){
+          currentSong = 0;
+      }
+      songList[currentSong].play();
+      requestAnimationFrame(function(timestamp){
+          starttime = timestamp || new Date().getTime();
+          moveBar(timestamp, pointer, bar.clientWidth, songList[currentSong])
+      })
+  }
+  songDataUpdate(songList[currentSong]);
+  songSelector(songList);
 }
 
 //play/pause button
@@ -248,9 +228,27 @@ document.addEventListener('mousemove', ev =>{
 
 bar.addEventListener('mousedown', ev => {
     dragSongBar = true;
-    songList[currentSong].pause();
-    updateSongBar(ev.clientX);
-    songList[currentSong].play();
+    if(songList[currentSong].paused){
+        updateSongBar(ev.clientX);
+    } else {
+        songList[currentSong].pause();
+        updateSongBar(ev.clientX);
+        songList[currentSong].play();
+    }
 })
 
+listBtn.addEventListener('click', (evTarget) => {
+    toggleTracklist(evTarget);
+})
+
+function toggleTracklist(list){
+    console.log("hello world")
+    
+}
+
+export function songSelector(tracklist){
+    tracklist.forEach((el, index) => {
+        index === currentSong ? el.listHTMLElement.classList.add('selected') : el.listHTMLElement.classList.remove('selected')
+    })
+}
 

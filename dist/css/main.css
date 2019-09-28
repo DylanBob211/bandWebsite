@@ -75,6 +75,29 @@ nav ul {
       background-color: rgba(141, 85, 0, 0.7);
       transition: all .3s ease-in-out; }
 
+#showcase {
+  width: 100%;
+  height: 100vh; }
+  #showcase #logo {
+    margin: 0 auto;
+    background-position-x: center;
+    background-position-y: center;
+    width: 100%;
+    height: 60%;
+    background-image: url(/dist/imgs/logo.png);
+    background-size: cover; }
+    @media (orientation: landscape) {
+      #showcase #logo {
+        height: 100vh; } }
+  #showcase #background_img_showcase {
+    background: url(/dist/imgs/Vecs/Component.svg);
+    width: 100%;
+    height: 40%;
+    background-size: cover; }
+    @media (orientation: landscape) {
+      #showcase #background_img_showcase {
+        height: 0; } }
+
 #mp3-player {
   /*container*/
   width: 70%;
@@ -90,8 +113,8 @@ nav ul {
   @media (orientation: landscape) {
     #mp3-player {
       float: left;
-      margin: 0;
-      width: 50%; } }
+      margin: 0 auto;
+      width: 35%; } }
   #mp3-player i {
     border: 2px solid #fff;
     padding: .6rem;
@@ -112,6 +135,7 @@ nav ul {
       padding: 1.3rem;
       font-size: 1.3em; }
   #mp3-player #song-image {
+    display: none;
     align-self: stretch;
     background: url(https://source.unsplash.com/800x600);
     background-size: cover;
@@ -190,17 +214,19 @@ nav ul {
     align-items: center; }
 
 #songlist {
-  display: none;
-  background-color: rgba(218, 131, 0, 0.5);
-  margin: 0 auto;
-  float: right;
+  display: block;
+  position: absolute;
+  top: 140vh;
   overflow: hidden; }
   @media (orientation: landscape) {
     #songlist {
       display: block;
-      width: 45%;
+      width: 35%;
+      margin: 0 auto;
       max-width: 500px;
-      height: 400px; } }
+      height: 400px;
+      float: right;
+      background-color: rgba(218, 131, 0, 0.5); } }
   #songlist ul {
     text-overflow: hidden; }
     #songlist ul .song-item {
@@ -215,6 +241,12 @@ nav ul {
     #songlist ul .selected {
       background-color: rgba(141, 85, 0, 0.7); }
 
+#music {
+  width: 100%;
+  height: 100vh;
+  background: url(/dist/imgs/Vecs/MusicBG.svg) no-repeat;
+  background-size: cover; }
+
 * {
   box-sizing: border-box; }
 
@@ -222,7 +254,7 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
-  font-family: "Roboto", Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
   color: #000; }
 
 /*Global*/
@@ -253,36 +285,6 @@ a {
 
 .current {
   color: #f39200; }
-
-/*Showcase*/
-#showcase {
-  width: 100%;
-  height: 100vh; }
-  #showcase #logo {
-    margin: 0 auto;
-    background-position-x: center;
-    background-position-y: center;
-    width: 100%;
-    height: 60%;
-    background-image: url(/dist/imgs/logo.png);
-    background-size: cover; }
-    @media (orientation: landscape) {
-      #showcase #logo {
-        height: 100vh; } }
-  #showcase #presect {
-    background: url(/dist/imgs/Vecs/Component.svg);
-    width: 100%;
-    height: 40%;
-    background-size: cover; }
-    @media (orientation: landscape) {
-      #showcase #presect {
-        height: 0; } }
-
-#music {
-  width: 100%;
-  height: 100vh;
-  background: url(/dist/imgs/Vecs/MusicBG.svg) no-repeat;
-  background-size: cover; }
 
 #news {
   margin: 0;
@@ -348,8 +350,7 @@ a {
 
 footer {
   background-color: #1d1d1d;
-  width: 100%;
-  height: 200px; }
+  width: 100%; }
   footer h5 {
     position: relative;
     top: 20px;
@@ -359,3 +360,6 @@ footer {
     color: #fff;
     float: right;
     margin-right: 25px; }
+  footer:after {
+    content: '';
+    clear: both; }

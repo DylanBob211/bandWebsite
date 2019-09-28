@@ -1,0 +1,34 @@
+#showcase {
+   
+  width: 100%;
+  height: 100vh;    
+
+  #logo{
+    margin: 0 auto;
+    background-position-x: center;
+    background-position-y: center;
+    width: 100%;
+    height: 60%;
+    background-image: url(/dist/imgs/logo.png);
+    background-size: cover;
+    
+    @media (orientation: landscape){
+        height: 100vh;
+    }  
+  }
+
+  #background_img_showcase {
+    background: url(/dist/imgs/Vecs/Component.svg);
+    width: 100%;
+    height: 40%;
+    background-size: cover;
+    
+
+    @media (orientation: landscape){
+        height: 0;
+    }
+    
+  }
+
+  
+}
