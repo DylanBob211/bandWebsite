@@ -11,10 +11,10 @@ import { songList, updateVolBar, currentSong, songSelector } from "./mp3-player.
 
 import { songDataUpdate } from './abstract.js'
 
-const tiktok = new Song('Tik Tok', './audio/kesha.mp3');
-const russian = new Song('Russian', './audio/russian.mp3');
-const evans = new Song('Spartacus Love Theme', './audio/evans.mp3');
-const miller = new Song('Detroit', './audio/detroit.mp3');
+const tiktok = new Song('Tik Tok', '../audio/kesha.mp3');
+const russian = new Song('Russian', '../audio/russian.mp3');
+const evans = new Song('Spartacus Love Theme', '../audio/evans.mp3');
+const miller = new Song('Detroit', '../audio/detroit.mp3');
 
 const album = new Album('Far Gone', 'Scoop', '2018', null);
 album.addTrackToAlbum(tiktok);
