@@ -10,10 +10,9 @@ const bar = document.querySelector('#song-bar');
 export let songList = [];
 export let currentSong = 1;
 
-
-playBtn.addEventListener('click', () => {toggleSong(songList[currentSong])});
-backBtn.addEventListener('click', () => {prevSong()});
-nextBtn.addEventListener('click', () => {nextSong()});
+// playBtn.addEventListener('click', () => {toggleSong(songList[currentSong])});
+// backBtn.addEventListener('click', () => {prevSong()});
+// nextBtn.addEventListener('click', () => {nextSong()});
 
 //back button
 function prevSong(){
@@ -99,7 +98,6 @@ function toggleSong(song) {
         //style
         playBtn.classList.remove('pressed')
         playBtn.classList.remove('fa-pause');
-        playBtn.classList.remove("pressed");
         playBtn.classList.add('fa-play');
         //stop animation
 

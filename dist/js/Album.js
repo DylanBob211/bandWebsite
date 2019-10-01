@@ -6,6 +6,7 @@ export default class Album {
     this.cover = cover;
 
     this.songList = [];
+    this.songSelected = 0;
   }
 
   addTrackToAlbum(song) {
@@ -14,5 +15,24 @@ export default class Album {
   
   removeTrackFromAlbum(songName) {
     this.songList.filter(songInList => songInList !== songName);
+  }
+
+  selectSong(index) {
+    if (index <= 0) {
+      this.songSelected = 0;
+    } else if (index >= this.songList.length) {
+      this.songSelected = 0;
+    } else {
+      this.songSelected = index;
+    }
+  }
+
+  getCurrentSong() {
+    console.log(this);
+    return this.songList[this.songSelected];
+  }
+
+  getSongFromIndex(index) {
+    return this.songList(index);
   }
 }

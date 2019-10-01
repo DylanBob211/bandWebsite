@@ -1,5 +1,7 @@
 import Menu from './menu.js';
-import { Song } from './songs.js';
+import Song from './Song.js';
+import Album from './Album.js';
+import Mp3Player from './mp3_player.js';
 
 //toggle menu-nav
 const threeLinesMenu = document.querySelector('.menu-btn');
@@ -9,26 +11,41 @@ import { songList, updateVolBar, currentSong, songSelector } from "./mp3-player.
 
 import { songDataUpdate } from './abstract.js'
 
-const tiktok = new Song('Tik Tok', 'Kesha', './audio/Kesha-TiK ToK.mp3');
-const test = new Song('Russian', 'rusfolks', './audio/test.mp3');
-const evans = new Song('Spartacus Love Theme', 'Bill Evans', './audio/Spartacus Love Theme - Bill Evans Solo.mp3');
-const miller = new Song('Detroit', 'Marcus Miller', './audio/Miller-Detroit.mp3');
+const tiktok = new Song('Tik Tok', './audio/kesha.mp3');
+const russian = new Song('Russian', './audio/russian.mp3');
+const evans = new Song('Spartacus Love Theme', './audio/evans.mp3');
+const miller = new Song('Detroit', './audio/detroit.mp3');
+
+const album = new Album('Far Gone', 'Scoop', '2018', null);
+album.addTrackToAlbum(tiktok);
+album.addTrackToAlbum(russian);
+album.addTrackToAlbum(evans);
+album.addTrackToAlbum(miller);
+
+const mp3Player = Mp3Player(album);
+
+const playBtn = document.getElementById("play");
+const backBtn = document.getElementById("back");
+const nextBtn = document.getElementById("next");
+
+playBtn.addEventListener('click', mp3Player.togglePlay);
+backBtn.addEventListener('click', mp3Player.previousSong);
+nextBtn.addEventListener('click', mp3Player.nextSong);
 
 //body onload updates
-document.querySelector('body').onload = function loadUpdates(){
-    songDataUpdate(songList[currentSong]);  
-    songList[currentSong].volume = 0.5;
-    updateVolBar(null, songList[currentSong].volume);
-    songSelector(songList);
-    
-}
+// document.querySelector('body').onload = function loadUpdates(){
+//   songDataUpdate(songList[currentSong]);  
+//   songList[currentSong].volume = 0.5;
+//   updateVolBar(null, songList[currentSong].volume);
+//   songSelector(songList);
+// }
 
-songList.forEach((listElement, index) => {
-  listElement.listHTMLElement.addEventListener('click', (event) => {  
-    currentSong = index;
-    songSelector(songList);
-  })
-})
+// songList.forEach((listElement, index) => {
+//   listElement.listHTMLElement.addEventListener('click', (event) => {  
+//     currentSong = index;
+//     songSelector(songList);
+//   })
+// })
 
 
 
