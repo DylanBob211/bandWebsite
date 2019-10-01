@@ -9,7 +9,6 @@
   "author": "\" Nicola D'Oronzo\"",
   "license": "ISC",
   "dependencies": {
-    "howler": "^2.1.1",
     "input-range-scss": "^1.5.1",
     "node-sass": "^4.11.0"
   }
