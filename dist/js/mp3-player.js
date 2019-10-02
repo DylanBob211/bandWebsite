@@ -180,7 +180,7 @@ volBtn.addEventListener('click', ev => {
 export function updateSongBar(x, currenttime){
     let songBar = bar;
     var percentage;
-    if(currenttime){
+    if (currenttime){
         percentage = currrenttime * 100;
     } else {
         var position = x - songBar.offsetLeft;

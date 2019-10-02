@@ -7,14 +7,14 @@ import Mp3Player from './mp3_player.js';
 const threeLinesMenu = document.querySelector('.menu-btn');
 threeLinesMenu.addEventListener("click", Menu.toggleMenu);
 
-import { songList, updateVolBar, currentSong, songSelector } from "./mp3-player.js";
+import { updateVolBar, songSelector } from "./mp3-player.js";
 
 import { songDataUpdate } from './abstract.js'
 
-const tiktok = new Song('Tik Tok', '../audio/kesha.mp3');
-const russian = new Song('Russian', '../audio/russian.mp3');
-const evans = new Song('Spartacus Love Theme', '../audio/evans.mp3');
-const miller = new Song('Detroit', '../audio/detroit.mp3');
+const tiktok = new Song('Tik Tok', '../../audio/kesha.mp3');
+const russian = new Song('Russian', '../../audio/russian.mp3');
+const evans = new Song('Spartacus Love Theme', '../../audio/evans.mp3');
+const miller = new Song('Detroit', '../../audio/detroit.mp3');
 
 const album = new Album('Far Gone', 'Scoop', '2018', null);
 album.addTrackToAlbum(tiktok);
