@@ -8,13 +8,17 @@ const mp3PlayerModule = (function(album) {
   const barPointer = document.querySelector('#bar-pointer');
   const barSeeker = document.querySelector('#song-bar');
 
+
+  /* Bar Animation */
+  
   let moveBarAnimationID;
   let startTime;
-  function moveSongBarSeeker(timestamp, barPointer, dist, song){
+  function moveSongBarSeeker(timestamp, barPointer, dist, song) {
     let timeImpression = timestamp || new Date().getTime(); //segna il tempo iniziale
     let progress = (song.currentTime / song.duration) * 100; //in percentuale
 
     barPointer.style.left = progress + '%'; //sposta il cursore
+    
     if (song.currentTime < song.duration && !song.paused) {
         moveBarAnimationID = requestAnimationFrame(timestamp => {
             moveSongBarSeeker(timeImpression, barPointer, dist, song);
@@ -45,7 +49,7 @@ const mp3PlayerModule = (function(album) {
         requestAnimationFrame(timestamp => {
           startTime = timestamp || new Date().getTime();
           moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, currentSong);
-        })
+        });
         playButtonClickAnimation(isPaused);
       } else {
         currentSong.pause();
@@ -61,6 +65,8 @@ const mp3PlayerModule = (function(album) {
   /* BackButton  */
 
   async function previousSong() {
+    if (moveBarAnimationID) cancelAnimationFrame(moveBarAnimationID);
+    barPointer.style.left = 0;
     const currentSong = album.getCurrentSong();
     const isPlaying = await currentSong.isPlaying();
     const currentTime = currentSong.now();
@@ -68,18 +74,33 @@ const mp3PlayerModule = (function(album) {
     if (currentTime < 3) {
       album.selectSong(album.songSelected - 1);
     }
-    console.log(currentSong.currentTime);
     const newSong = album.getCurrentSong();
-    if (isPlaying) newSong.play();
+    if (isPlaying) {
+      newSong.play();
+      requestAnimationFrame(timestamp => {
+        startTime = timestamp || new Date().getTime();
+        moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, newSong);
+      });
+    }
+    console.log(newSong);
   };
 
   async function nextSong() {
+    if (moveBarAnimationID) cancelAnimationFrame(moveBarAnimationID);
+    barPointer.style.left = 0;
     const currentSong = album.getCurrentSong();
     const isPlaying = await currentSong.isPlaying();
     currentSong.stop();
     album.selectSong(album.songSelected + 1);
     const newSong = album.getCurrentSong();
-    if (isPlaying) newSong.play();
+    if (isPlaying) {
+      newSong.play();
+      requestAnimationFrame(timestamp => {
+        startTime = timestamp || new Date().getTime();
+        moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, newSong);
+      });
+    }
+    console.log(newSong)
   };
 
   return {

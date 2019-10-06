@@ -28,7 +28,6 @@ export default class Album {
   }
 
   getCurrentSong() {
-    console.log(this);
     return this.songList[this.songSelected];
   }
 
