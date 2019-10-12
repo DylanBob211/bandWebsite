@@ -7,9 +7,6 @@ import Mp3Player from './mp3_player.js';
 const threeLinesMenu = document.querySelector('.menu-btn');
 threeLinesMenu.addEventListener("click", Menu.toggleMenu);
 
-import { updateVolBar, songSelector } from "./mp3-player.js";
-
-import { songDataUpdate } from './abstract.js'
 
 const tiktok = new Song('Tik Tok', '../../audio/kesha.mp3');
 const russian = new Song('Russian', '../../audio/russian.mp3');
@@ -32,6 +29,9 @@ playBtn.addEventListener('click', mp3Player.togglePlay);
 backBtn.addEventListener('click', mp3Player.previousSong);
 nextBtn.addEventListener('click', mp3Player.nextSong);
 
+document.querySelector('body').onload = function(ev) {
+  mp3Player.updateSongData(album.getCurrentSong())
+}
 //body onload updates
 // document.querySelector('body').onload = function loadUpdates(){
 //   songDataUpdate(songList[currentSong]);  

@@ -1,3 +1,5 @@
+import { sec2time } from './abstract.js';
+
 const mp3PlayerModule = (function(album) {
   const playBtn = document.getElementById("play");
   const backBtn = document.getElementById("back");
@@ -8,21 +10,79 @@ const mp3PlayerModule = (function(album) {
   const barPointer = document.querySelector('#bar-pointer');
   const barSeeker = document.querySelector('#song-bar');
 
+  /* Update Data On View*/
+
+  function setSongDuration(song) {
+    const songbar = document.querySelector('#song-bar');
+    let totalDuration = sec2time(song.duration);
+    songbar.setAttribute('data-after', totalDuration);
+  }
+
+  function setSongTitle(song) {
+    const title = document.querySelector('#songtitle');
+    title.innerHTML = song.title;
+  }
+
+  function setSongAuthor(album) {
+    const author = document.querySelector('#songauthor');
+    author.innerHTML = album.author;
+  }
+
+  function setAlbumName(album) {
+    const albumName = document.querySelector('#albumname');
+    albumName.innerHTML = album.name;
+  }
+
+  function updateCurrentTime(song){
+    const songBar = document.querySelector('#song-bar');
+    songBar.setAttribute('data-before', sec2time(song.currentTime));   
+  }
+
+  function updateSongData() {
+    const currentSong = album.getCurrentSong();
+    setSongDuration(currentSong);
+    setSongTitle(currentSong);
+    setSongAuthor(album);
+    setAlbumName(album);
+  }
 
   /* Bar Animation */
   
   let moveBarAnimationID;
   let startTime;
+
+
+  // TODO: decouple updating factors
+
   function moveSongBarSeeker(timestamp, barPointer, dist, song) {
     let timeImpression = timestamp || new Date().getTime(); //segna il tempo iniziale
     let progress = (song.currentTime / song.duration) * 100; //in percentuale
-
+    
     barPointer.style.left = progress + '%'; //sposta il cursore
+    updateCurrentTime(album.getCurrentSong()) // cambia il tempo su schermo
     
     if (song.currentTime < song.duration && !song.paused) {
-        moveBarAnimationID = requestAnimationFrame(timestamp => {
-            moveSongBarSeeker(timeImpression, barPointer, dist, song);
-        });
+      moveBarAnimationID = requestAnimationFrame(timestamp => {
+        moveSongBarSeeker(timeImpression, barPointer, dist, song);
+      });
+    }
+  }
+
+  /* Icon animation */
+
+  function volumeBtnIcon(song){
+    const volBtn = document.getElementById("volume");
+    if (song.volume == 0){
+      removeLastFaToken(volBtn);
+      volBtn.classList.add('fa-volume-off')
+        
+    } else if (song.volume <= 0.5) {
+      removeLastFaToken(volBtn);
+      volBtn.classList.add('fa-volume-down')
+        
+    } else if (song.volume < 1.0) {
+      removeLastFaToken(volBtn);
+      volBtn.classList.add('fa-volume-up')
     }
   }
 
@@ -58,7 +118,7 @@ const mp3PlayerModule = (function(album) {
       } 
       return isPaused;
     } catch(e) {
-      console.log(e);
+      console.warn(e);
     }
   };
 
@@ -67,6 +127,7 @@ const mp3PlayerModule = (function(album) {
   async function previousSong() {
     if (moveBarAnimationID) cancelAnimationFrame(moveBarAnimationID);
     barPointer.style.left = 0;
+
     const currentSong = album.getCurrentSong();
     const isPlaying = await currentSong.isPlaying();
     const currentTime = currentSong.now();
@@ -82,7 +143,7 @@ const mp3PlayerModule = (function(album) {
         moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, newSong);
       });
     }
-    console.log(newSong);
+    updateSongData(newSong);
   };
 
   async function nextSong() {
@@ -100,13 +161,14 @@ const mp3PlayerModule = (function(album) {
         moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, newSong);
       });
     }
-    console.log(newSong)
+    updateSongData(newSong);
   };
 
   return {
     togglePlay,
     previousSong,
-    nextSong
+    nextSong,
+    updateSongData
   }
 
 });
