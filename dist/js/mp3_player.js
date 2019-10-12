@@ -35,7 +35,7 @@ const mp3PlayerModule = (function(album) {
 
   function updateCurrentTime(song){
     const songBar = document.querySelector('#song-bar');
-    songBar.setAttribute('data-before', sec2time(song.currentTime));   
+    songBar.setAttribute('data-before', sec2time(song.now()));   
   }
 
   function updateSongData() {
@@ -46,7 +46,7 @@ const mp3PlayerModule = (function(album) {
     setAlbumName(album);
   }
 
-  /* Bar Animation */
+  /* Bar Animation and Time */
   
   let moveBarAnimationID;
   let startTime;
@@ -68,6 +68,39 @@ const mp3PlayerModule = (function(album) {
     }
   }
 
+  function updateBarPointer(x, currentTime) {
+    let percentage;
+    if (currentTime) {
+      percentage = currentTime * 100;
+    } else {
+      let position = x - barSeeker.offsetLeft;
+      percentage = 100 * position / barSeeker.clientWidth;
+    }
+    if (percentage > 100) {
+      percentage = 100;
+    }
+    if (percentage < 0) {
+      percentage = 0;
+    }
+    barPointer.style.left = percentage + "%";
+    const currentSong = album.getCurrentSong();
+    currentSong.setTime(percentage / 100 * currentSong.duration);
+    updateCurrentTime(currentSong);
+    cancelAnimationFrame(moveBarAnimationID);
+  }
+
+  async function onBarClick(x) {
+    const currentSong = album.getCurrentSong();
+    const isPlaying = await currentSong.isPlaying();
+    if (isPlaying) {
+      currentSong.pause();
+      updateBarPointer(x);
+      currentSong.play()
+    } else {
+      updateBarPointer(x);
+    }
+  }
+
   /* Icon animation */
 
   function volumeBtnIcon(song){
@@ -86,8 +119,6 @@ const mp3PlayerModule = (function(album) {
     }
   }
 
-  /* PlayButton */
-
   function playButtonClickAnimation(isOn) {
     if (isOn) {
       playBtn.classList.remove('fa-play');
@@ -99,6 +130,10 @@ const mp3PlayerModule = (function(album) {
       playBtn.classList.add('fa-play');
     }
   };
+
+  /* Volume */
+
+  /* PlayButton */
 
   async function togglePlay() {
     const currentSong = album.getCurrentSong();
@@ -168,7 +203,9 @@ const mp3PlayerModule = (function(album) {
     togglePlay,
     previousSong,
     nextSong,
-    updateSongData
+    updateSongData,
+    onBarClick,
+    updateBarPointer
   }
 
 });
