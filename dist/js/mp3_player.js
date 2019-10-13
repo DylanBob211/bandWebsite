@@ -46,27 +46,10 @@ const mp3PlayerModule = (function(album) {
     setAlbumName(album);
   }
 
-  /* Bar Animation and Time */
-  
-  let moveBarAnimationID;
-  let startTime;
-
 
   // TODO: decouple updating factors
 
-  function moveSongBarSeeker(timestamp, barPointer, dist, song) {
-    let timeImpression = timestamp || new Date().getTime(); //segna il tempo iniziale
-    let progress = (song.currentTime / song.duration) * 100; //in percentuale
-    
-    barPointer.style.left = progress + '%'; //sposta il cursore
-    updateCurrentTime(album.getCurrentSong()) // cambia il tempo su schermo
-    
-    if (song.currentTime < song.duration && !song.paused) {
-      moveBarAnimationID = requestAnimationFrame(timestamp => {
-        moveSongBarSeeker(timeImpression, barPointer, dist, song);
-      });
-    }
-  }
+
 
   function updateBarPointer(x, currentTime) {
     let percentage;
@@ -133,6 +116,66 @@ const mp3PlayerModule = (function(album) {
 
   /* Volume */
 
+  /* Bar Animation and Time */
+  
+  let moveBarAnimationID;
+  let startTime;
+
+  function moveSongBarSeeker(timestamp, barPointer, dist, song) {
+    let timeImpression = timestamp || new Date().getTime(); //segna il tempo iniziale
+    let progress = (song.currentTime / song.duration) * 100; //in percentuale
+    
+    barPointer.style.left = progress + '%'; //sposta il cursore
+    updateCurrentTime(album.getCurrentSong()) // cambia il tempo su schermo
+    
+    if (song.currentTime < song.duration && !song.paused) {
+      moveBarAnimationID = requestAnimationFrame(timestamp => {
+        moveSongBarSeeker(timeImpression, barPointer, dist, song);
+      });
+    }
+  }
+
+  function playSong(currentSong) {
+    currentSong.play();
+    startPointerAnimation();
+  }
+  
+  function pauseSong(currentSong) {
+    currentSong.pause();
+    stopPointerAnimation();
+  }
+
+  function resetSong(currentSong) {
+    currentSong.stop();
+    stopPointerAnimation();
+    barPointer.style.left = 0;
+    updateCurrentTime(currentSong);
+  }
+
+  let animID;
+  function startPointerAnimation(timestamp) {
+    animID = requestAnimationFrame(() => update(timestamp));
+  };
+
+  function update(timestamp) {
+    const currentSong = album.getCurrentSong();
+    let timeImpression = timestamp || new Date().getTime(); //segna il tempo iniziale
+    let progress = (currentSong.currentTime / currentSong.duration) * 100; //in percentuale
+    
+    barPointer.style.left = progress + '%'; //sposta il cursore
+    updateCurrentTime(currentSong);
+    if (currentSong.currentTime < currentSong.duration && !currentSong.paused) {
+      startPointerAnimation(timeImpression);
+    } else {
+      stopPointerAnimation();
+    }
+  };
+
+  function stopPointerAnimation() {
+    cancelAnimationFrame(animID);
+    animID = null;
+  }
+
   /* PlayButton */
 
   async function togglePlay() {
@@ -140,16 +183,11 @@ const mp3PlayerModule = (function(album) {
     try {
       const isPaused = await currentSong.paused;
       if (isPaused) {
-        currentSong.play();
-        requestAnimationFrame(timestamp => {
-          startTime = timestamp || new Date().getTime();
-          moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, currentSong);
-        });
+        playSong(currentSong);
         playButtonClickAnimation(isPaused);
       } else {
-        currentSong.pause();
+        pauseSong(currentSong)
         playButtonClickAnimation(isPaused);
-        cancelAnimationFrame(moveBarAnimationID);
       } 
       return isPaused;
     } catch(e) {
@@ -160,43 +198,30 @@ const mp3PlayerModule = (function(album) {
   /* BackButton  */
 
   async function previousSong() {
-    if (moveBarAnimationID) cancelAnimationFrame(moveBarAnimationID);
-    barPointer.style.left = 0;
-
     const currentSong = album.getCurrentSong();
-    const isPlaying = await currentSong.isPlaying();
     const currentTime = currentSong.now();
-    currentSong.stop();
+    const isPlaying = await currentSong.isPlaying();
+    resetSong(currentSong);
     if (currentTime < 3) {
       album.selectSong(album.songSelected - 1);
     }
     const newSong = album.getCurrentSong();
     if (isPlaying) {
-      newSong.play();
-      requestAnimationFrame(timestamp => {
-        startTime = timestamp || new Date().getTime();
-        moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, newSong);
-      });
+      playSong(newSong);
     }
-    updateSongData(newSong);
+    updateSongData();
   };
 
   async function nextSong() {
-    if (moveBarAnimationID) cancelAnimationFrame(moveBarAnimationID);
-    barPointer.style.left = 0;
     const currentSong = album.getCurrentSong();
     const isPlaying = await currentSong.isPlaying();
-    currentSong.stop();
+    resetSong(currentSong);
     album.selectSong(album.songSelected + 1);
     const newSong = album.getCurrentSong();
     if (isPlaying) {
-      newSong.play();
-      requestAnimationFrame(timestamp => {
-        startTime = timestamp || new Date().getTime();
-        moveSongBarSeeker(startTime, barPointer, barSeeker.clientWidth, newSong);
-      });
+      playSong(newSong);
     }
-    updateSongData(newSong);
+    updateSongData();
   };
 
   return {
