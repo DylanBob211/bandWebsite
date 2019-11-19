@@ -8,8 +8,8 @@
   },
   "author": "\" Nicola D'Oronzo\"",
   "license": "ISC",
-  "dependencies": {
-    "input-range-scss": "^1.5.1",
-    "node-sass": "^4.11.0"
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.13.0"
   }
 }
