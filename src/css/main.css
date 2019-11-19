@@ -84,13 +84,13 @@ nav ul {
     background-position-y: center;
     width: 100%;
     height: 60%;
-    background-image: url(/dist/imgs/logo.png);
+    background-image: url(/src/imgs/logo.png);
     background-size: cover; }
     @media (orientation: landscape) {
       #showcase #logo {
         height: 100vh; } }
   #showcase #background_img_showcase {
-    background: url(/dist/imgs/Vecs/Component.svg);
+    background: url(/src/imgs/Vecs/Component.svg);
     width: 100%;
     height: 40%;
     background-size: cover; }
@@ -244,7 +244,7 @@ nav ul {
 #music {
   width: 100%;
   height: 100vh;
-  background: url(/dist/imgs/Vecs/MusicBG.svg) no-repeat;
+  background: url(/src/imgs/Vecs/MusicBG.svg) no-repeat;
   background-size: cover; }
 
 * {
@@ -291,7 +291,7 @@ a {
   padding: 0;
   height: 750px;
   width: 100%;
-  background: url(/dist/imgs/Vecs/NewsBG.svg) no-repeat;
+  background: url(/src/imgs/Vecs/NewsBG.svg) no-repeat;
   background-size: cover; }
   #news .text-box {
     overflow: hidden;

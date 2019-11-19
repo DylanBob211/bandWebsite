@@ -9,7 +9,7 @@
     background-position-y: center;
     width: 100%;
     height: 60%;
-    background-image: url(/dist/imgs/logo.png);
+    background-image: url(/src/imgs/logo.png);
     background-size: cover;
     
     @media (orientation: landscape){
@@ -18,7 +18,7 @@
   }
 
   #background_img_showcase {
-    background: url(/dist/imgs/Vecs/Component.svg);
+    background: url(/src/imgs/Vecs/Component.svg);
     width: 100%;
     height: 40%;
     background-size: cover;
