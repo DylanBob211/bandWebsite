@@ -7,7 +7,6 @@ import Mp3Player from './mp3_player.js';
 const threeLinesMenu = document.querySelector('.menu-btn');
 threeLinesMenu.addEventListener("click", Menu.toggleMenu);
 
-
 const tiktok = new Song('Tik Tok', '../../audio/kesha.mp3');
 const russian = new Song('Russian', '../../audio/russian.mp3');
 const evans = new Song('Spartacus Love Theme', '../../audio/evans.mp3');
@@ -81,23 +80,4 @@ document.addEventListener('mousemove', ev =>{
 //     songSelector(songList);
 //   })
 // })
-
-
-
-//FAI PULIZIA IN _mp3-player.scss
-//RISISTEMA I MODULI IN /js E FAI PULIZIA
-
-//CREA UNA SERIE DI CANZONI E FAI LA TRACKLIST
-//STILIZZA LA TRACKLIST E LA POSIZIONE IN LANDSCAPE
-//SISTEMA IL BOTTONE TRACKLIST
-
-//SISTEMA LO STILE DELLA BARRA NAV IN ALTO
-//SISTEMA IL FOOTER IN BASSO
-
-//SCOPRI LE ANIMAZIONI IN SCROLLING DI CSS
-//SISTEMA LO STYLING DI NEWS
-
-//SISTEMA LA PRIMA PAGINA E SCRIVI QUALCOSA SOTTO SCOOP
-
-//CREA LE ALTRE PAGINE HTML
 

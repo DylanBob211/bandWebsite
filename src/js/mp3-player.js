@@ -1,5 +1,3 @@
-import { volBtnIcon, songDataUpdate, setSongCurrentTimeOnScreen, removeLastFaToken } from './abstract.js';
-
 const playBtn = document.getElementById("play");
 const backBtn = document.getElementById("back");
 const nextBtn = document.getElementById("next");
