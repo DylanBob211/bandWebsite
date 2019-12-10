@@ -17,10 +17,8 @@ const menuModule = (function() {
     window.addEventListener('scroll', () => {
       let st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
-        console.log('down')
         hideNavBar()        
       } else {
-        console.log('up')
         showNavBar()
       }
       lastScrollTop = st <= 0 ? 0 : st    
@@ -68,6 +66,7 @@ const menuModule = (function() {
   function openNavMenu() {
     hiddenMenuNav.classList.add('shown');
     hiddenMenuLink.forEach(elem => {
+      elem.addEventListener('click', toggleMenu);
       elem.classList.add('shown');
     })
   }
@@ -75,6 +74,7 @@ const menuModule = (function() {
   function closeNavMenu() {
     hiddenMenuNav.classList.remove('shown');
     hiddenMenuLink.forEach(elem => {
+      elem.removeEventListener('click', toggleMenu);
       elem.classList.remove('shown');
     })
   }
