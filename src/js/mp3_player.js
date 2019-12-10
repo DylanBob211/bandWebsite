@@ -1,6 +1,6 @@
 import { sec2time } from './abstract.js';
 
-const mp3PlayerModule = (function(album) {
+const mp3PlayerModule = (function (album) {
   const playBtn = document.getElementById("play");
   const backBtn = document.getElementById("back");
   const nextBtn = document.getElementById("next");
@@ -10,6 +10,7 @@ const mp3PlayerModule = (function(album) {
   const barPointer = document.querySelector('#bar-pointer');
   const barSeeker = document.querySelector('#song-bar');
 
+  let animID;
   /* Update Data On View*/
 
   function setSongDuration(song) {
@@ -33,9 +34,9 @@ const mp3PlayerModule = (function(album) {
     albumName.innerHTML = album.name;
   }
 
-  function updateCurrentTime(song){
+  function updateCurrentTime(song) {
     const songBar = document.querySelector('#song-bar');
-    songBar.setAttribute('data-before', sec2time(song.now()));   
+    songBar.setAttribute('data-before', sec2time(song.now()));
   }
 
   function updateSongData() {
@@ -47,7 +48,7 @@ const mp3PlayerModule = (function(album) {
   }
 
 
-  
+
   function updateBarPointer(x, currentTime) {
     let percentage;
     if (currentTime) {
@@ -66,7 +67,10 @@ const mp3PlayerModule = (function(album) {
     const currentSong = album.getCurrentSong();
     currentSong.setTime(percentage / 100 * currentSong.duration);
     updateCurrentTime(currentSong);
-    cancelAnimationFrame(moveBarAnimationID);
+    if (animID) {
+      cancelAnimationFrame(animID);
+    }
+    
   }
 
   async function onBarClick(x) {
@@ -83,16 +87,16 @@ const mp3PlayerModule = (function(album) {
 
   /* Icon animation */
 
-  function volumeBtnIcon(song){
+  function volumeBtnIcon(song) {
     const volBtn = document.getElementById("volume");
-    if (song.volume == 0){
+    if (song.volume == 0) {
       removeLastFaToken(volBtn);
       volBtn.classList.add('fa-volume-off')
-        
+
     } else if (song.volume <= 0.5) {
       removeLastFaToken(volBtn);
       volBtn.classList.add('fa-volume-down')
-        
+
     } else if (song.volume < 1.0) {
       removeLastFaToken(volBtn);
       volBtn.classList.add('fa-volume-up')
@@ -119,7 +123,7 @@ const mp3PlayerModule = (function(album) {
     currentSong.play();
     startBarAnimation();
   }
-  
+
   function pauseSong(currentSong) {
     currentSong.pause();
     stopBarAnimation();
@@ -132,7 +136,7 @@ const mp3PlayerModule = (function(album) {
     updateCurrentTime(currentSong);
   }
 
-  let animID;
+
   function startBarAnimation(timestamp) {
     animID = requestAnimationFrame(() => update(timestamp));
   };
@@ -141,7 +145,7 @@ const mp3PlayerModule = (function(album) {
     const currentSong = album.getCurrentSong();
     let timeImpression = timestamp || new Date().getTime(); //prende il tempo iniziale o quello trascorso
     let progress = (currentSong.currentTime / currentSong.duration) * 100; //in percentuale
-    
+
     barPointer.style.left = progress + '%'; //sposta il cursore
     updateCurrentTime(currentSong);
     if (currentSong.currentTime < currentSong.duration && !currentSong.paused) {
@@ -152,8 +156,11 @@ const mp3PlayerModule = (function(album) {
   };
 
   function stopBarAnimation() {
-    cancelAnimationFrame(animID);
-    animID = null;
+    if (animID) {
+      cancelAnimationFrame(animID);
+      animID = null;
+    }
+
   }
 
   /* PlayButton */
@@ -168,9 +175,9 @@ const mp3PlayerModule = (function(album) {
       } else {
         pauseSong(currentSong)
         playButtonClickAnimation(isPaused);
-      } 
+      }
       return isPaused;
-    } catch(e) {
+    } catch (e) {
       console.warn(e);
     }
   };
