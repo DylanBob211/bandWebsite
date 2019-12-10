@@ -1,15 +1,11 @@
 /*Header*/
 
 #fixed-nav-bar{
-  height: 7vh;
+  height: 3rem;
   width: 100%;
   background: $nav-footer;
-  z-index: 3;
+  z-index: 5;
   position: fixed;
-
-  @media (orientation:landscape) {
-      height: 10vh;
-  }
 
   .menu-btn{  
     

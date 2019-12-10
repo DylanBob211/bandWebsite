@@ -1,15 +1,15 @@
-@import 'config';
-@import 'anim';
-@import 'menu';
-@import 'showcase';
-@import 'music';
+@import "config";
+@import "anim";
+@import "menu";
+@import "showcase";
+@import "music";
 
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
-  margin:0;
+body {
+  margin: 0;
   padding: 0;
   background: $black;
   //scegli un font
@@ -23,11 +23,11 @@ img {
   max-width: 100%;
 }
 
-ul{
+ul {
   list-style-type: none;
 }
 
-a{
+a {
   text-decoration: none;
   color: #fff;
 }
@@ -41,7 +41,7 @@ a{
   transform: translate(-50%, -50%);
 }
 
-.center--floated{
+.center--floated {
   margin: 0 auto;
   position: relative;
   top: 50%;
@@ -49,13 +49,11 @@ a{
   transform: translateY(-50%);
 }
 
-.current{
+.current {
   color: $orange;
 }
 
-
-
-#news{
+#news {
   margin: 0;
   padding: 0;
   height: 750px;
@@ -63,107 +61,100 @@ a{
   background: url(/src/imgs/Vecs/NewsBG.svg) no-repeat;
   background-size: cover;
 
-  .text-box{
-      //in un media grande le box si allargano ma non vanno giu
-      overflow: hidden;
-      background-color: #EAEAEA;
-      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-      
-      .title{
-          padding: .3rem;
-          text-transform: uppercase;
-          text-decoration: underline;
-      }
+  .text-box {
+    //in un media grande le box si allargano ma non vanno giu
+    overflow: hidden;
+    background-color: #eaeaea;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 
-      p{
-          padding: .3rem;
-      }
+    .title {
+      padding: 0.3rem;
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
 
-      &.one{
-          float:left;
-          clear: left;
-          margin: .5rem 0 0 .5rem;
-          width: 60%;
-          max-height: 30%;
-      }
+    p {
+      padding: 0.3rem;
+    }
 
-      &.two{
-          float: right;
-          clear: right;
-          margin-top: .5rem;
-          width: 60%;
-          max-height: 40%;
-      }
+    &.one {
+      float: left;
+      clear: left;
+      margin: 0.5rem 0 0 0.5rem;
+      width: 60%;
+      max-height: 30%;
+    }
 
-      
+    &.two {
+      float: right;
+      clear: right;
+      margin-top: 0.5rem;
+      width: 60%;
+      max-height: 40%;
+    }
   }
-  .photo-box{
-      background-color: #aaaaaa;
-      width: 30%;
-      height: 30%;
-      margin: 0 auto;
-      //in un formato piccolo le foto si strizzano troppo
-      &.one{
-          float: right;
-          clear: right;
-          background: url(https://source.unsplash.com/800x600);
-          background-size: cover;
-      }
+  .photo-box {
+    background-color: #aaaaaa;
+    width: 30%;
+    height: 30%;
+    margin: 0 auto;
+    //in un formato piccolo le foto si strizzano troppo
+    &.one {
+      float: right;
+      clear: right;
+      background: url(https://source.unsplash.com/800x600);
+      background-size: cover;
+    }
 
-      &.two{
-          float: left;
-          clear: left;
-          background: url(https://source.unsplash.com/800x700);
-          background-size: cover;
-      }
-
+    &.two {
+      float: left;
+      clear: left;
+      background: url(https://source.unsplash.com/800x700);
+      background-size: cover;
+    }
   }
 
-  .contact-btn{
-      position: relative;
-      top: 50px;
-      text-align: center;
-      margin: 0 auto;
-      color: #fff;
-      border: 5px solid #fff;
-      clear: both;
-      width: 50%;
-      max-width: 200px;
-      height: 5rem;
+  .contact-btn {
+    position: relative;
+    top: 50px;
+    text-align: center;
+    margin: 0 auto;
+    color: #fff;
+    border: 5px solid #fff;
+    clear: both;
+    width: 50%;
+    max-width: 200px;
+    height: 5rem;
 
-      h1{
-          vertical-align: middle;
-      }
-      &:hover{
-          border-color: darken($orange, 5);
-          color: darken($orange, 5);
-          @include softly;
-      }
-  }    
-
+    h1 {
+      vertical-align: middle;
+    }
+    &:hover {
+      border-color: darken($orange, 5);
+      color: darken($orange, 5);
+      @include softly;
+    }
+  }
 }
 
-footer{
-    background-color: $nav-footer;
-    width: 100%;
+footer {
+  background-color: $nav-footer;
+  width: 100%;
 
-    h5{ 
-        position: relative;
-        top: 20px;
-        margin: 0 0 10px 25px;
-        color: #fff;
-    }
-    h6{
-        color:#fff;
-        float: right;
-        margin-right: 25px;
-    }
+  h5 {
+    position: relative;
+    top: 20px;
+    margin: 0 0 10px 25px;
+    color: #fff;
+  }
+  h6 {
+    color: #fff;
+    float: right;
+    margin-right: 25px;
+  }
 
-    &:after{
-      content: '';
-      clear: both;
-    }
-
+  &:after {
+    content: "";
+    clear: both;
+  }
 }
-
-
