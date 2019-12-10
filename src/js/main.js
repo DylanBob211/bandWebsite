@@ -2,6 +2,7 @@ import Menu from './menu.js';
 import Song from './Song.js';
 import Album from './Album.js';
 import Mp3Player from './mp3_player.js';
+import Gallery from './gallery.js';
 
 //toggle menu-nav
 const threeLinesMenu = document.querySelector('.menu-btn');
@@ -21,7 +22,8 @@ album.addTrackToAlbum(miller);
 const mp3Player = Mp3Player(album);
 
 document.querySelector('body').onload = function(ev) {
-  mp3Player.updateSongData(album.getCurrentSong())
+  mp3Player.updateSongData(album.getCurrentSong());
+  Gallery.initShowcase();
 }
 
 // MP3 PLAYER Button Click events

@@ -5,16 +5,56 @@
 
   #logo{
     margin: 0 auto;
-    background-position-x: center;
-    background-position-y: center;
     width: 100%;
     height: 60%;
-    background-image: url(/src/imgs/logo.png);
-    background-size: cover;
     
     @media (orientation: landscape){
-        height: 100vh;
+      height: 150vh;
     }  
+    overflow: hidden;
+    
+    .carousel {
+      display: flex;
+
+      .carousel_photo {
+        margin: 0 auto;
+        opacity: 1;
+        transition: transform .5s;
+        width: 100%;
+        height: 60%;
+      }
+    }
+
+    .selector-box {
+      position: absolute;
+      z-index: 1;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      @media (orientation: landscape){
+        top: 90%;
+      }
+      .carousel_button {
+        background: #aeaeae;
+        opacity: .5;
+        margin: 0 .25rem;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        @include softly();
+        
+        &:hover {
+          background: #eaeaea;
+        }
+
+        &.active {
+          background: #eeeeee;
+        }
+      }
+    }
   }
 
   #background_img_showcase {

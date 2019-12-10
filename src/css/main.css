@@ -2,14 +2,11 @@
 /*media query*/
 /*Header*/
 #fixed-nav-bar {
-  height: 7vh;
+  height: 3rem;
   width: 100%;
   background: #1d1d1d;
-  z-index: 3;
+  z-index: 5;
   position: fixed; }
-  @media (orientation: landscape) {
-    #fixed-nav-bar {
-      height: 10vh; } }
   #fixed-nav-bar .menu-btn {
     float: left; }
     #fixed-nav-bar .menu-btn .line {
@@ -80,15 +77,44 @@ nav ul {
   height: 100vh; }
   #showcase #logo {
     margin: 0 auto;
-    background-position-x: center;
-    background-position-y: center;
     width: 100%;
     height: 60%;
-    background-image: url(/src/imgs/logo.png);
-    background-size: cover; }
+    overflow: hidden; }
     @media (orientation: landscape) {
       #showcase #logo {
-        height: 100vh; } }
+        height: 150vh; } }
+    #showcase #logo .carousel {
+      display: flex; }
+      #showcase #logo .carousel .carousel_photo {
+        margin: 0 auto;
+        opacity: 1;
+        transition: transform .5s;
+        width: 100%;
+        height: 60%; }
+    #showcase #logo .selector-box {
+      position: absolute;
+      z-index: 1;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center; }
+      @media (orientation: landscape) {
+        #showcase #logo .selector-box {
+          top: 90%; } }
+      #showcase #logo .selector-box .carousel_button {
+        background: #aeaeae;
+        opacity: .5;
+        margin: 0 .25rem;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all .3s ease-in-out; }
+        #showcase #logo .selector-box .carousel_button:hover {
+          background: #eaeaea; }
+        #showcase #logo .selector-box .carousel_button.active {
+          background: #eeeeee; }
   #showcase #background_img_showcase {
     background: url(/src/imgs/Vecs/Component.svg);
     width: 100%;
@@ -295,24 +321,24 @@ a {
   background-size: cover; }
   #news .text-box {
     overflow: hidden;
-    background-color: #EAEAEA;
+    background-color: #eaeaea;
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25); }
     #news .text-box .title {
-      padding: .3rem;
+      padding: 0.3rem;
       text-transform: uppercase;
       text-decoration: underline; }
     #news .text-box p {
-      padding: .3rem; }
+      padding: 0.3rem; }
     #news .text-box.one {
       float: left;
       clear: left;
-      margin: .5rem 0 0 .5rem;
+      margin: 0.5rem 0 0 0.5rem;
       width: 60%;
       max-height: 30%; }
     #news .text-box.two {
       float: right;
       clear: right;
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       width: 60%;
       max-height: 40%; }
   #news .photo-box {
@@ -361,5 +387,5 @@ footer {
     float: right;
     margin-right: 25px; }
   footer:after {
-    content: '';
+    content: "";
     clear: both; }
