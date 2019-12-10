@@ -5,8 +5,6 @@ import Mp3Player from './mp3_player.js';
 import Gallery from './gallery.js';
 
 //toggle menu-nav
-const threeLinesMenu = document.querySelector('.menu-btn');
-threeLinesMenu.addEventListener("click", Menu.toggleMenu);
 
 const tiktok = new Song('Tik Tok', '../../audio/kesha.mp3');
 const russian = new Song('Russian', '../../audio/russian.mp3');
@@ -24,6 +22,7 @@ const mp3Player = Mp3Player(album);
 document.querySelector('body').onload = function(ev) {
   mp3Player.updateSongData(album.getCurrentSong());
   Gallery.initShowcase();
+  Menu.init()
 }
 
 // MP3 PLAYER Button Click events

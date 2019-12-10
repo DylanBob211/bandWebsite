@@ -6,7 +6,10 @@
   width: 100%;
   background: #1d1d1d;
   z-index: 5;
-  position: fixed; }
+  position: fixed;
+  transition: transform .2s; }
+  #fixed-nav-bar.hidden {
+    transform: translateY(-100%); }
   #fixed-nav-bar .menu-btn {
     float: left; }
     #fixed-nav-bar .menu-btn .line {

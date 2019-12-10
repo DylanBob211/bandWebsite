@@ -6,6 +6,11 @@
   background: $nav-footer;
   z-index: 5;
   position: fixed;
+  transition: transform .2s;
+
+  &.hidden {
+    transform: translateY(-100%);
+  }
 
   .menu-btn{  
     
