@@ -130,7 +130,7 @@ nav ul {
         #showcase #logo .selector-box .carousel_button.active {
           background: #eeeeee; }
   #showcase #background_img_showcase {
-    background: url(/src/imgs/Vecs/Component.svg);
+    background: url(../imgs/Vecs/Component.svg);
     width: 100%;
     height: 40%;
     background-size: cover; }
@@ -287,7 +287,7 @@ nav ul {
 #music {
   width: 100%;
   height: 100vh;
-  background: url(/src/imgs/Vecs/MusicBG.svg) no-repeat;
+  background: url(../imgs/Vecs/MusicBG.svg) no-repeat;
   background-size: cover; }
 
 * {
@@ -334,7 +334,7 @@ a {
   padding: 0;
   height: 750px;
   width: 100%;
-  background: url(/src/imgs/Vecs/NewsBG.svg) no-repeat;
+  background: url(../imgs/Vecs/NewsBG.svg) no-repeat;
   background-size: cover; }
   #news .text-box {
     overflow: hidden;
