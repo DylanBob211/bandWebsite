@@ -1,66 +1,50 @@
 #showcase {
-   
   width: 100%;
-  height: 100vh;    
+  height: 100vh;
 
-  #logo{
-    margin: 0 auto;
+  #logo {
     width: 100%;
-    height: 70%;
-    
-    @media (orientation: landscape){
-      height: 150vh;
-    }  
+    height: 100vh;
+
     overflow: hidden;
+    transition: background-image 1.5s ease-out;
+    background-image: url('../imgs/logo.png');
+    background-position: center;
+    background-size: cover;
 
     &::after {
-      content: '';
+      content: "";
       background: #000000;
       opacity: 0.2;
       position: absolute;
       top: 0;
       width: 100%;
-      height: 70%;
+      height: 100vh;
       z-index: 1;
-    }
-    
-    .carousel {
-      display: flex;
-
-      .carousel_photo {
-        margin: 0 auto;
-        opacity: 1;
-        transition: transform .5s;
-        width: 100vw;
-        height: 60%;
-
-        &:first-child {
-          z-index: 2;
-        }
-      }
     }
 
     .selector-box {
       position: absolute;
       z-index: 2;
       left: 50%;
-      top: 55%;
+      top: 95%;
       transform: translateX(-50%);
       display: flex;
       justify-content: center;
-      @media (orientation: landscape){
+      @media (orientation: landscape) {
         top: 90%;
       }
+      
       .carousel_button {
         background: #aeaeae;
-        opacity: .5;
-        margin: 0 .25rem;
+        opacity: 0.5;
+        margin: 0 0.25rem;
         width: 1rem;
         height: 1rem;
         border-radius: 0.5rem;
         cursor: pointer;
         @include softly();
-        
+
         &:hover {
           background: #eaeaea;
         }
@@ -72,25 +56,29 @@
     }
   }
 
-  #background_img_showcase {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url(../imgs/Vecs/Component.svg);
-    width: 100%;
-    height: 30%;
-    background-size: cover;
+    .carousel {
+      display: flex;
 
-    
-    
-    #arrow {
-      @media (orientation: landscape){
-        position: absolute;
-        top: 70%;
-        z-index: 4;
-      }      
+      .carousel_photo {
+        opacity: 1;
+        transition: transform 0.5s;
+        width: 100vw;
+        height: 100%;
+
+        &:first-child {
+          z-index: 2;
+        }
+      }
       
+
+    #arrow {
+
       i {
+        position: absolute;
+        z-index: 2;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         display: block;
         color: #eaeaea;
         font-size: 6rem;
@@ -107,14 +95,7 @@
         }
       }
     }
-    
-    
 
-    @media (orientation: landscape){
-        height: 0;
-    }
     
   }
-
-  
 }

@@ -19,6 +19,9 @@ const gallery = (function() {
       })
     });
     autoScroll();
+    setTimeout(() => {
+      document.querySelector('#arrow i').classList.add('active');
+    }, 4500)
   }
 
   function next() {

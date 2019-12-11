@@ -3,11 +3,12 @@ import Song from './Song.js';
 import Album from './Album.js';
 import Mp3Player from './mp3_player.js';
 import Gallery from './gallery.js';
+import Showcase from './showcase.js';
 
 //toggle menu-nav
 
-const ghost = new Song('Still Awake', '../../music/ghostrifter-official-still-awake.mp3');
-const redlips = new Song('Red Lips', '../../music/deoxys-beats-redlips.mp3');
+const ghost = new Song('Still Awake', '/src/music/ghostrifter-official-still-awake.mp3');
+const redlips = new Song('Red Lips', '/src/music/deoxys-beats-redlips.mp3');
 
 const album = new Album('Far Gone', 'Scoop', '2018', null);
 album.addTrackToAlbum(ghost);
@@ -17,11 +18,9 @@ const mp3Player = Mp3Player(album);
 
 document.querySelector('body').onload = function(ev) {
   mp3Player.init();
-  Gallery.initShowcase();
+  // Gallery.initShowcase();
+  Showcase.init();
   Menu.init()
-  setTimeout(() => {
-    document.querySelector('#arrow i').classList.add('active');
-  }, 4500)
 }
 
 // MP3 PLAYER Button Click events
