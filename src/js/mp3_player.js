@@ -137,7 +137,7 @@ const mp3PlayerModule = (function (album) {
   }
 
   function resetSong(currentSong) {
-    currentSong.stopBarAnimation();
+    // currentSong.stopBarAnimation();
     stopBarAnimation();
     barPointer.style.left = 0;
     updateCurrentTime(currentSong);

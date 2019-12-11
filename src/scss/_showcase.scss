@@ -73,15 +73,52 @@
   }
 
   #background_img_showcase {
+    display: flex;
+    justify-content: center;
     background: url(../imgs/Vecs/Component.svg);
     width: 100%;
     height: 40%;
     background-size: cover;
 
-    i {
-      color: #fff;
-      font-size: 5rem;
+    
+    
+    #arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+        transition: opacity 0.7s;
+        text-transform: capitalize;
+        text-decoration: underline;
+        font-size: 3rem;
+        font-weight: 1000;
+        color: #fff;
+        opacity: 0;
+        
+        &.active {
+          opacity: 1;
+        }
+      }
+      
+      i {
+        display: block;
+        color: #eaeaea;
+        font-size: 5rem;
+        transition: color 0.3s, font-size 0.3s, opacity 0.7s;
+        opacity: 0;
+        
+        &:hover {
+          color: #fff;
+          font-size: 5.5rem;
+        }
+
+        &.active {
+          opacity: 1;
+        }
+      }
     }
+    
     
 
     @media (orientation: landscape){

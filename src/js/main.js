@@ -6,15 +6,12 @@ import Gallery from './gallery.js';
 
 //toggle menu-nav
 
-const tiktok = new Song('Tik Tok', '../../audio/kesha.mp3');
-const russian = new Song('Russian', '../../audio/russian.mp3');
-const evans = new Song('Spartacus Love Theme', '../../audio/evans.mp3');
-const miller = new Song('Detroit', '../../audio/detroit.mp3');
+const ghost = new Song('Still Awake', '../../music/ghostrifter-official-still-awake.mp3');
+const redlips = new Song('Red Lips', '../../music/deoxys-beats-redlips.mp3');
+
 const album = new Album('Far Gone', 'Scoop', '2018', null);
-album.addTrackToAlbum(tiktok);
-album.addTrackToAlbum(russian);
-album.addTrackToAlbum(evans);
-album.addTrackToAlbum(miller);
+album.addTrackToAlbum(ghost);
+album.addTrackToAlbum(redlips);
 
 const mp3Player = Mp3Player(album);
 
@@ -22,6 +19,10 @@ document.querySelector('body').onload = function(ev) {
   mp3Player.init();
   Gallery.initShowcase();
   Menu.init()
+  setTimeout(() => {
+    document.querySelector('#arrow h1').classList.add('active');
+    document.querySelector('#arrow i').classList.add('active');
+  }, 4500)
 }
 
 // MP3 PLAYER Button Click events
