@@ -1,3 +1,3 @@
 ## Scoop Website
 
-Big refactoring in progress
+The site is undergoing a rework
