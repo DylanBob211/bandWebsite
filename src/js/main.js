@@ -10,7 +10,6 @@ const tiktok = new Song('Tik Tok', '../../audio/kesha.mp3');
 const russian = new Song('Russian', '../../audio/russian.mp3');
 const evans = new Song('Spartacus Love Theme', '../../audio/evans.mp3');
 const miller = new Song('Detroit', '../../audio/detroit.mp3');
-
 const album = new Album('Far Gone', 'Scoop', '2018', null);
 album.addTrackToAlbum(tiktok);
 album.addTrackToAlbum(russian);
@@ -20,7 +19,7 @@ album.addTrackToAlbum(miller);
 const mp3Player = Mp3Player(album);
 
 document.querySelector('body').onload = function(ev) {
-  mp3Player.updateSongData(album.getCurrentSong());
+  mp3Player.init();
   Gallery.initShowcase();
   Menu.init()
 }
@@ -31,9 +30,7 @@ const playBtn = document.getElementById("play");
 const backBtn = document.getElementById("back");
 const nextBtn = document.getElementById("next");
 
-playBtn.addEventListener('click', mp3Player.togglePlay);
-backBtn.addEventListener('click', mp3Player.previousSong);
-nextBtn.addEventListener('click', mp3Player.nextSong);
+
 
 // MP3 PLAYER Dragging events
 

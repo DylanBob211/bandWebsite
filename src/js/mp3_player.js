@@ -10,8 +10,15 @@ const mp3PlayerModule = (function (album) {
   const barPointer = document.querySelector('#bar-pointer');
   const barSeeker = document.querySelector('#song-bar');
 
-  let animID;
+  let barAnimationID;
   /* Update Data On View*/
+
+  function init() {
+    playBtn.addEventListener('click', togglePlay);
+    backBtn.addEventListener('click', previousSong);
+    nextBtn.addEventListener('click', nextSong);
+    updateSongData()
+  }
 
   function setSongDuration(song) {
     const songbar = document.querySelector('#song-bar');
@@ -67,8 +74,8 @@ const mp3PlayerModule = (function (album) {
     const currentSong = album.getCurrentSong();
     currentSong.setTime(percentage / 100 * currentSong.duration);
     updateCurrentTime(currentSong);
-    if (animID) {
-      cancelAnimationFrame(animID);
+    if (barAnimationID) {
+      cancelAnimationFrame(barAnimationID);
     }
     
   }
@@ -138,7 +145,7 @@ const mp3PlayerModule = (function (album) {
 
 
   function startBarAnimation(timestamp) {
-    animID = requestAnimationFrame(() => update(timestamp));
+    barAnimationID = requestAnimationFrame(() => update(timestamp));
   };
 
   function update(timestamp) {
@@ -156,9 +163,9 @@ const mp3PlayerModule = (function (album) {
   };
 
   function stopBarAnimation() {
-    if (animID) {
-      cancelAnimationFrame(animID);
-      animID = null;
+    if (barAnimationID) {
+      cancelAnimationFrame(barAnimationID);
+      barAnimationID = null;
     }
 
   }
@@ -212,9 +219,7 @@ const mp3PlayerModule = (function (album) {
   };
 
   return {
-    togglePlay,
-    previousSong,
-    nextSong,
+    init,
     updateSongData,
     onBarClick,
     updateBarPointer
