@@ -20,7 +20,6 @@ document.querySelector('body').onload = function(ev) {
   Gallery.initShowcase();
   Menu.init()
   setTimeout(() => {
-    document.querySelector('#arrow h1').classList.add('active');
     document.querySelector('#arrow i').classList.add('active');
   }, 4500)
 }

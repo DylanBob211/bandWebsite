@@ -81,7 +81,7 @@ nav ul {
   #showcase #logo {
     margin: 0 auto;
     width: 100%;
-    height: 60%;
+    height: 70%;
     overflow: hidden; }
     @media (orientation: landscape) {
       #showcase #logo {
@@ -93,7 +93,7 @@ nav ul {
       position: absolute;
       top: 0;
       width: 100%;
-      height: 60%;
+      height: 70%;
       z-index: 1; }
     #showcase #logo .carousel {
       display: flex; }
@@ -101,7 +101,7 @@ nav ul {
         margin: 0 auto;
         opacity: 1;
         transition: transform .5s;
-        width: 100%;
+        width: 100vw;
         height: 60%; }
         #showcase #logo .carousel .carousel_photo:first-child {
           z-index: 2; }
@@ -132,35 +132,27 @@ nav ul {
   #showcase #background_img_showcase {
     display: flex;
     justify-content: center;
+    align-items: center;
     background: url(../imgs/Vecs/Component.svg);
     width: 100%;
-    height: 40%;
+    height: 30%;
     background-size: cover; }
-    #showcase #background_img_showcase #arrow {
-      display: flex;
-      flex-direction: column;
-      align-items: center; }
-      #showcase #background_img_showcase #arrow h1 {
-        transition: opacity 0.7s;
-        text-transform: capitalize;
-        text-decoration: underline;
-        font-size: 3rem;
-        font-weight: 1000;
+    @media (orientation: landscape) {
+      #showcase #background_img_showcase #arrow {
+        position: absolute;
+        top: 70%;
+        z-index: 4; } }
+    #showcase #background_img_showcase #arrow i {
+      display: block;
+      color: #eaeaea;
+      font-size: 6rem;
+      transition: color 0.3s, font-size 0.3s, opacity 0.7s;
+      opacity: 0; }
+      #showcase #background_img_showcase #arrow i:hover {
         color: #fff;
-        opacity: 0; }
-        #showcase #background_img_showcase #arrow h1.active {
-          opacity: 1; }
-      #showcase #background_img_showcase #arrow i {
-        display: block;
-        color: #eaeaea;
-        font-size: 5rem;
-        transition: color 0.3s, font-size 0.3s, opacity 0.7s;
-        opacity: 0; }
-        #showcase #background_img_showcase #arrow i:hover {
-          color: #fff;
-          font-size: 5.5rem; }
-        #showcase #background_img_showcase #arrow i.active {
-          opacity: 1; }
+        font-size: 6.5rem; }
+      #showcase #background_img_showcase #arrow i.active {
+        opacity: 1; }
     @media (orientation: landscape) {
       #showcase #background_img_showcase {
         height: 0; } }

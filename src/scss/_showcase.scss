@@ -6,7 +6,7 @@
   #logo{
     margin: 0 auto;
     width: 100%;
-    height: 60%;
+    height: 70%;
     
     @media (orientation: landscape){
       height: 150vh;
@@ -20,7 +20,7 @@
       position: absolute;
       top: 0;
       width: 100%;
-      height: 60%;
+      height: 70%;
       z-index: 1;
     }
     
@@ -31,7 +31,7 @@
         margin: 0 auto;
         opacity: 1;
         transition: transform .5s;
-        width: 100%;
+        width: 100vw;
         height: 60%;
 
         &:first-child {
@@ -75,42 +75,31 @@
   #background_img_showcase {
     display: flex;
     justify-content: center;
+    align-items: center;
     background: url(../imgs/Vecs/Component.svg);
     width: 100%;
-    height: 40%;
+    height: 30%;
     background-size: cover;
 
     
     
     #arrow {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      h1 {
-        transition: opacity 0.7s;
-        text-transform: capitalize;
-        text-decoration: underline;
-        font-size: 3rem;
-        font-weight: 1000;
-        color: #fff;
-        opacity: 0;
-        
-        &.active {
-          opacity: 1;
-        }
-      }
+      @media (orientation: landscape){
+        position: absolute;
+        top: 70%;
+        z-index: 4;
+      }      
       
       i {
         display: block;
         color: #eaeaea;
-        font-size: 5rem;
+        font-size: 6rem;
         transition: color 0.3s, font-size 0.3s, opacity 0.7s;
         opacity: 0;
-        
+
         &:hover {
           color: #fff;
-          font-size: 5.5rem;
+          font-size: 6.5rem;
         }
 
         &.active {
