@@ -153,8 +153,9 @@ footer {
     margin-right: 25px;
   }
 
-  &:after {
+  &::after {
     content: "";
     clear: both;
+    display: table;
   }
 }

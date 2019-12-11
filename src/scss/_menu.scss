@@ -18,7 +18,7 @@
     //BurgerMenu Lines
     .line{
       //responsive la X e' asimmetrica. Da sistemare.
-      margin: 8px;
+      margin: .5rem;
       padding: .2rem;
       width: 2.5rem;
       height: .2rem;
@@ -31,8 +31,7 @@
           transform: translate(0px, 18px);    
         }
         &:nth-child(2){
-          opacity: 0;
-          @include softly;                    
+          opacity: 0;              
         }
         &:nth-child(3){
           transform: translate(0px, -10px);
