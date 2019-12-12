@@ -21,7 +21,7 @@ export default class Song extends Audio {
     this.currentTime = 0;
   }
 
-  async isPlaying(){
+  isPlaying(){
     return !this.paused;
   }
 }
