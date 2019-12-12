@@ -42,6 +42,12 @@
         }
       }
 
+      h3 {
+        @include mediaSm() {
+          font-size: small;
+        }
+      }
+
     }
     .photo-box {
       width: 45%;

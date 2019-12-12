@@ -291,6 +291,9 @@ nav ul {
       @media screen and (max-width: 500px) {
         #news .newsbox-container .text-box p {
           font-size: small; } }
+      @media screen and (max-width: 500px) {
+        #news .newsbox-container .text-box h3 {
+          font-size: small; } }
     #news .newsbox-container .photo-box {
       width: 45%;
       height: 80%;
