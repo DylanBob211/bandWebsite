@@ -12,36 +12,6 @@ document.querySelector('body').onload = function(ev) {
 
 // MP3 PLAYER Dragging events
 
-const volumeOuter = document.querySelector('#outer-slider');
-const barSeeker = document.querySelector('#song-bar');
-
-let dragVolumeBar = false;
-let dragSongBar = false;
-
-volumeOuter.addEventListener('mousedown', ev => {
-    dragVolumeBar = true;
-    //updateVolBar(ev.clientX);
-});
-
-barSeeker.addEventListener('mousedown', ev => {
-  dragSongBar = true;
-  mp3Player.onBarClick(ev.clientX);
-});
-
-document.addEventListener('mouseup', () => {
-  dragVolumeBar = false;
-  dragSongBar = false;
-})
-// dragging
-document.addEventListener('mousemove', ev =>{
-  if(dragVolumeBar){
-    //updateVolBar(ev.clientX);
-  }
-  if(dragSongBar){
-    mp3Player.updateBarPointer(ev.clientX);
-  }
-});
-
 //body onload updates
 // document.querySelector('body').onload = function loadUpdates(){
 //   songDataUpdate(songList[currentSong]);  

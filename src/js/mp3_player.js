@@ -1,4 +1,4 @@
-import { sec2time } from './abstract.js';
+import { sec2time, removeLastFaToken } from './abstract.js';
 import Song from './Song.js';
 import Album from './Album.js';
 
@@ -18,16 +18,43 @@ const mp3Player = (function () {
 
     const listBtn = document.getElementById("list");
     const volBtn = document.querySelector('#volume');
+    const volumeOuter = document.querySelector('#outer-slider');
     const barPointer = document.querySelector('#bar-pointer');
     const barSeeker = document.querySelector('#song-bar');
 
     let barAnimationID;
+    let dragVolumeBar = false;
+    let dragSongBar = false;
+
     /* Update Data On View*/
 
     function init() {
       playBtn.addEventListener('click', togglePlay);
       backBtn.addEventListener('click', previousSong);
       nextBtn.addEventListener('click', nextSong);
+      volumeOuter.addEventListener('mousedown', ev => {
+        dragVolumeBar = true;
+        updateVolBar(ev.clientX);
+      });
+
+      barSeeker.addEventListener('mousedown', ev => {
+        dragSongBar = true;
+        onBarClick(ev.clientX);
+      });
+
+      document.addEventListener('mouseup', () => {
+        dragVolumeBar = false;
+        dragSongBar = false;
+      })
+      // dragging
+      document.addEventListener('mousemove', ev => {
+        if (dragVolumeBar) {
+          updateVolBar(ev.clientX);
+        }
+        if (dragSongBar) {
+          updateBarPointer(ev.clientX);
+        }
+      });
       updateSongData();
     }
 
@@ -103,9 +130,37 @@ const mp3Player = (function () {
       }
     }
 
+    function updateVolBar(x, vol) {
+      const volumeInner = document.querySelector('#inner-slider');
+
+      let volume = volumeOuter;
+      let percentage;
+
+      if (vol) {
+        percentage = vol * 100;
+      } else {
+        let position = x - volume.offsetLeft - (listBtn.clientWidth / 2);
+        percentage = 100 * position / volume.clientWidth;
+      }
+      if (percentage > 100) {
+        percentage = 100;
+      }
+      if (percentage < 0) {
+        percentage = 0;
+      }
+      volumeInner.style.width = percentage + "%";
+
+      album.songList.forEach(el => {
+        el.volume = percentage / 100;
+      })
+
+      volBtnIcon(album.getCurrentSong());
+    }
+
+
     /* Icon animation */
 
-    function volumeBtnIcon(song) {
+    function volBtnIcon(song) {
       const volBtn = document.getElementById("volume");
       if (song.volume == 0) {
         removeLastFaToken(volBtn);
