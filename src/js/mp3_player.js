@@ -1,4 +1,14 @@
 import { sec2time } from './abstract.js';
+import Song from './Song.js';
+import Album from './Album.js';
+
+const url = 'https://dylanbob211.github.io/bandWebsite';
+const ghost = new Song('Still Awake', url + '/src/assets/music/ghostrifter-official-still-awake.mp3');
+const redlips = new Song('Red Lips', url + '/src/assets/music/deoxys-beats-redlips.mp3');
+
+const myAlbum = new Album('Far Gone', 'Scoop', '2018', null);
+myAlbum.addTrackToAlbum(ghost);
+myAlbum.addTrackToAlbum(redlips);
 
 const mp3PlayerModule = (function (album) {
   const playBtn = document.getElementById("play");
@@ -17,7 +27,7 @@ const mp3PlayerModule = (function (album) {
     playBtn.addEventListener('click', togglePlay);
     backBtn.addEventListener('click', previousSong);
     nextBtn.addEventListener('click', nextSong);
-    updateSongData()
+    updateSongData();
   }
 
   function setSongDuration(song) {
@@ -225,6 +235,6 @@ const mp3PlayerModule = (function (album) {
     updateBarPointer
   }
 
-});
+})(myAlbum);
 
 export default mp3PlayerModule;

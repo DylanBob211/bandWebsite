@@ -1,35 +1,14 @@
 import Menu from './menu.js';
-import Song from './Song.js';
-import Album from './Album.js';
 import Mp3Player from './mp3_player.js';
-import Gallery from './gallery.js';
 import Showcase from './showcase.js';
-
-//toggle menu-nav
-const url = 'https://dylanbob211.github.io/bandWebsite'
-const ghost = new Song('Still Awake', url + '/src/assets/music/ghostrifter-official-still-awake.mp3');
-const redlips = new Song('Red Lips', url + '/src/assets/music/deoxys-beats-redlips.mp3');
-
-const album = new Album('Far Gone', 'Scoop', '2018', null);
-album.addTrackToAlbum(ghost);
-album.addTrackToAlbum(redlips);
-
-const mp3Player = Mp3Player(album);
+import Contact from './contact.js';
 
 document.querySelector('body').onload = function(ev) {
-  mp3Player.init();
-  // Gallery.initShowcase();
+  Mp3Player.init();
+  Contact.init();
   Showcase.init();
-  Menu.init()
+  Menu.init();
 }
-
-// MP3 PLAYER Button Click events
-
-const playBtn = document.getElementById("play");
-const backBtn = document.getElementById("back");
-const nextBtn = document.getElementById("next");
-
-
 
 // MP3 PLAYER Dragging events
 
@@ -90,13 +69,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-document.querySelector('#contact').addEventListener('click', toggleContact);
-function toggleContact() {
-  const contactBox = document.querySelector('#contact-box');
-  if (!contactBox.classList.contains('shown')) {
-    contactBox.classList.add('shown');
-  } else {
-    contactBox.classList.remove('shown');
-  }
-
-}
