@@ -56,9 +56,9 @@ a {
 #news {
   margin: 0;
   padding: 0;
-  height: 750px;
+  height: 100vh;
   width: 100%;
-  background: url(../imgs/Vecs/NewsBG.svg) no-repeat;
+  background: url(../assets/imgs/Vecs/NewsBG.svg) no-repeat;
   background-size: cover;
 
   .text-box {
@@ -102,15 +102,17 @@ a {
     &.one {
       float: right;
       clear: right;
-      background: url(https://source.unsplash.com/800x600);
+      background: url('../assets/imgs/band-photo/palco.webp');
       background-size: cover;
+      background-position: center;
     }
 
     &.two {
       float: left;
       clear: left;
-      background: url(https://source.unsplash.com/800x700);
+      background: url('../assets/imgs/band-photo/palco1.webp');
       background-size: cover;
+      background-position: center;
     }
   }
 
