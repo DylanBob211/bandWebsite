@@ -292,7 +292,7 @@ nav ul {
 #music {
   width: 100%;
   height: 100vh;
-  background: url(../imgs/Vecs/MusicBG.svg) no-repeat;
+  background: url(../assets/imgs/Vecs/MusicBG.svg) no-repeat;
   background-size: cover; }
 
 * {
