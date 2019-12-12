@@ -1,0 +1,78 @@
+#news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background: url(../assets/imgs/Vecs/NewsBG.svg) no-repeat;
+  background-size: cover;
+
+  .newsbox-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+
+    :nth-child(1){
+      margin-left: 2rem;
+    }
+
+    .text-box {
+      //in un media grande le box si allargano ma non vanno giu
+      overflow: hidden;
+      background-color: #eaeaea;
+      padding: .5rem 1rem;
+      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+      width: 45%;
+      height: 90%;
+      z-index: 1;
+      
+
+      h1 {
+        text-transform: uppercase;
+      }
+
+    }
+    .photo-box {
+      width: 45%;
+      height: 80%;
+      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+
+      &:nth-child(1) {
+        position: relative;
+        left: 10%;
+        background: url("../assets/imgs/band-photo/palco.webp");
+        background-size: cover;
+        background-position: center;
+      }
+
+      &:nth-child(2) {
+        position: relative;
+        right: 15%;
+        top: 10%;
+        background: url("../assets/imgs/band-photo/palco1.webp");
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  }
+
+  .contact-btn {
+    text-align: center;
+    color: #fff;
+    border: 5px solid #fff;
+    width: 50%;
+    height: 5rem;
+    margin: 1rem 0;
+    cursor: pointer;
+
+    h1 {
+      vertical-align: middle;
+    }
+    &:hover {
+      border-color: darken($orange, 5);
+      color: darken($orange, 5);
+      @include softly;
+    }
+  }
+}

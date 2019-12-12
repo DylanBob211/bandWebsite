@@ -182,13 +182,6 @@ nav ul {
       margin-top: 20px;
       padding: 1.3rem;
       font-size: 1.3em; }
-  #mp3-player #song-image {
-    display: none;
-    align-self: stretch;
-    background: url(https://source.unsplash.com/800x600);
-    background-size: cover;
-    background-position: center;
-    flex: 3; }
   #mp3-player #songtitle {
     text-overflow: ellipsis;
     text-align: center;
@@ -261,39 +254,68 @@ nav ul {
     justify-content: space-around;
     align-items: center; }
 
-#songlist {
-  display: block;
-  position: absolute;
-  top: 140vh;
-  overflow: hidden; }
-  @media (orientation: landscape) {
-    #songlist {
-      display: block;
-      width: 35%;
-      margin: 0 auto;
-      max-width: 500px;
-      height: 400px;
-      float: right;
-      background-color: rgba(218, 131, 0, 0.5); } }
-  #songlist ul {
-    text-overflow: hidden; }
-    #songlist ul .song-item {
-      font-size: 2em;
-      white-space: nowrap;
-      padding: .5rem;
-      color: #fff; }
-      #songlist ul .song-item:hover {
-        background-color: rgba(141, 85, 0, 0.7);
-        transition: all .3s ease-in-out;
-        cursor: default; }
-    #songlist ul .selected {
-      background-color: rgba(141, 85, 0, 0.7); }
-
 #music {
   width: 100%;
   height: 100vh;
   background: url(../assets/imgs/Vecs/MusicBG.svg) no-repeat;
   background-size: cover; }
+
+#news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background: url(../assets/imgs/Vecs/NewsBG.svg) no-repeat;
+  background-size: cover; }
+  #news .newsbox-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50%; }
+    #news .newsbox-container :nth-child(1) {
+      margin-left: 2rem; }
+    #news .newsbox-container .text-box {
+      overflow: hidden;
+      background-color: #eaeaea;
+      padding: .5rem 1rem;
+      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+      width: 45%;
+      height: 90%;
+      z-index: 1; }
+      #news .newsbox-container .text-box h1 {
+        text-transform: uppercase; }
+    #news .newsbox-container .photo-box {
+      width: 45%;
+      height: 80%;
+      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25); }
+      #news .newsbox-container .photo-box:nth-child(1) {
+        position: relative;
+        left: 10%;
+        background: url("../assets/imgs/band-photo/palco.webp");
+        background-size: cover;
+        background-position: center; }
+      #news .newsbox-container .photo-box:nth-child(2) {
+        position: relative;
+        right: 15%;
+        top: 10%;
+        background: url("../assets/imgs/band-photo/palco1.webp");
+        background-size: cover;
+        background-position: center; }
+  #news .contact-btn {
+    text-align: center;
+    color: #fff;
+    border: 5px solid #fff;
+    width: 50%;
+    height: 5rem;
+    margin: 1rem 0;
+    cursor: pointer; }
+    #news .contact-btn h1 {
+      vertical-align: middle; }
+    #news .contact-btn:hover {
+      border-color: #da8300;
+      color: #da8300;
+      transition: all .3s ease-in-out; }
 
 * {
   box-sizing: border-box; }
@@ -333,70 +355,6 @@ a {
 
 .current {
   color: #f39200; }
-
-#news {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100%;
-  background: url(../assets/imgs/Vecs/NewsBG.svg) no-repeat;
-  background-size: cover; }
-  #news .text-box {
-    overflow: hidden;
-    background-color: #eaeaea;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25); }
-    #news .text-box .title {
-      padding: 0.3rem;
-      text-transform: uppercase;
-      text-decoration: underline; }
-    #news .text-box p {
-      padding: 0.3rem; }
-    #news .text-box.one {
-      float: left;
-      clear: left;
-      margin: 0.5rem 0 0 0.5rem;
-      width: 60%;
-      max-height: 30%; }
-    #news .text-box.two {
-      float: right;
-      clear: right;
-      margin-top: 0.5rem;
-      width: 60%;
-      max-height: 40%; }
-  #news .photo-box {
-    background-color: #aaaaaa;
-    width: 30%;
-    height: 30%;
-    margin: 0 auto; }
-    #news .photo-box.one {
-      float: right;
-      clear: right;
-      background: url("../assets/imgs/band-photo/palco.webp");
-      background-size: cover;
-      background-position: center; }
-    #news .photo-box.two {
-      float: left;
-      clear: left;
-      background: url("../assets/imgs/band-photo/palco1.webp");
-      background-size: cover;
-      background-position: center; }
-  #news .contact-btn {
-    position: relative;
-    top: 50px;
-    text-align: center;
-    margin: 0 auto;
-    color: #fff;
-    border: 5px solid #fff;
-    clear: both;
-    width: 50%;
-    max-width: 200px;
-    height: 5rem; }
-    #news .contact-btn h1 {
-      vertical-align: middle; }
-    #news .contact-btn:hover {
-      border-color: #da8300;
-      color: #da8300;
-      transition: all .3s ease-in-out; }
 
 footer {
   background-color: #1d1d1d;

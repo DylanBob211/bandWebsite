@@ -3,6 +3,7 @@
 @import "menu";
 @import "showcase";
 @import "music";
+@import "news";
 
 * {
   box-sizing: border-box;
@@ -53,93 +54,10 @@ a {
   color: $orange;
 }
 
-#news {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100%;
-  background: url(../assets/imgs/Vecs/NewsBG.svg) no-repeat;
-  background-size: cover;
 
-  .text-box {
-    //in un media grande le box si allargano ma non vanno giu
-    overflow: hidden;
-    background-color: #eaeaea;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-
-    .title {
-      padding: 0.3rem;
-      text-transform: uppercase;
-      text-decoration: underline;
-    }
-
-    p {
-      padding: 0.3rem;
-    }
-
-    &.one {
-      float: left;
-      clear: left;
-      margin: 0.5rem 0 0 0.5rem;
-      width: 60%;
-      max-height: 30%;
-    }
-
-    &.two {
-      float: right;
-      clear: right;
-      margin-top: 0.5rem;
-      width: 60%;
-      max-height: 40%;
-    }
-  }
-  .photo-box {
-    background-color: #aaaaaa;
-    width: 30%;
-    height: 30%;
-    margin: 0 auto;
-    //in un formato piccolo le foto si strizzano troppo
-    &.one {
-      float: right;
-      clear: right;
-      background: url('../assets/imgs/band-photo/palco.webp');
-      background-size: cover;
-      background-position: center;
-    }
-
-    &.two {
-      float: left;
-      clear: left;
-      background: url('../assets/imgs/band-photo/palco1.webp');
-      background-size: cover;
-      background-position: center;
-    }
-  }
-
-  .contact-btn {
-    position: relative;
-    top: 50px;
-    text-align: center;
-    margin: 0 auto;
-    color: #fff;
-    border: 5px solid #fff;
-    clear: both;
-    width: 50%;
-    max-width: 200px;
-    height: 5rem;
-
-    h1 {
-      vertical-align: middle;
-    }
-    &:hover {
-      border-color: darken($orange, 5);
-      color: darken($orange, 5);
-      @include softly;
-    }
-  }
-}
 
 footer {
+  
   background-color: $nav-footer;
   width: 100%;
 

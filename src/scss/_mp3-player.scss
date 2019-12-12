@@ -49,15 +49,6 @@
     }
   }
 
-  //immagine
-  #song-image{
-    display: none;
-    align-self: stretch;
-    background: url(https://source.unsplash.com/800x600);
-    background-size: cover;
-    background-position: center; 
-    flex: 3
-  }
   //titolo
   #songtitle{
     text-overflow: ellipsis;
@@ -159,39 +150,4 @@
     align-items: center;
       
   }    
-}
-
-#songlist{
-  display: block;
-  position: absolute;
-  top: 140vh;
-  overflow: hidden;
-  @media (orientation: landscape){
-      display: block;
-      width: 35%;
-      margin: 0 auto;
-      max-width: 500px;
-      height: 400px;
-      float: right;
-      background-color: rgba(darken($orange, 5), 0.5);
-  }   
-
-  ul{
-    text-overflow: hidden;
-    .song-item{
-      font-size: 2em;
-      white-space: nowrap;
-      padding: .5rem;
-      color: #fff;
-
-      &:hover{
-          background-color: rgba(darken($orange, 20), 0.7);
-          @include softly;
-          cursor: default;
-      }
-    }
-    .selected{
-      background-color: rgba(darken($orange, 20), 0.7);
-    }
-  }
 }
