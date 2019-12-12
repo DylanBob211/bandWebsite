@@ -9,8 +9,10 @@
     overflow: hidden;
     transition: background-image 1.5s ease-out;
     background-image: url('../imgs/logo.png');
-    background-position: center;
-    background-size: cover;
+    background-position-y: center;
+    background-position-x: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 
     &::after {
       content: "";

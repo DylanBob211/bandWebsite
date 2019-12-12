@@ -56,6 +56,11 @@ const showcase = (function() {
   }
 
   function changeImage(index) {
+    if (index === 0) {
+      bgShowcase.style.backgroundSize = 'contain';
+    } else {
+      bgShowcase.style.backgroundSize = 'cover';
+    }
     bgShowcase.style.backgroundImage = `url(${imgPaths[index]})`;
   }
 
