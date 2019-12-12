@@ -10,23 +10,6 @@ document.querySelector('body').onload = function(ev) {
   Menu.init();
 }
 
-// MP3 PLAYER Dragging events
-
-//body onload updates
-// document.querySelector('body').onload = function loadUpdates(){
-//   songDataUpdate(songList[currentSong]);  
-//   songList[currentSong].volume = 0.5;
-//   updateVolBar(null, songList[currentSong].volume);
-//   songSelector(songList);
-// }
-
-// songList.forEach((listElement, index) => {
-//   listElement.listHTMLElement.addEventListener('click', (event) => {  
-//     currentSong = index;
-//     songSelector(songList);
-//   })
-// })
-
 //scroll into view
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
