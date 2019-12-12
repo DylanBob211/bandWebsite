@@ -264,7 +264,6 @@ nav ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
   height: 100vh;
   background: url("../assets/imgs/Vecs/NewsBG.svg") no-repeat;
   background-size: cover; }
@@ -277,7 +276,7 @@ nav ul {
     #news .newsbox-container :nth-child(1) {
       margin-left: 2rem; }
     #news .newsbox-container .text-box {
-      overflow: hidden;
+      overflow-y: scroll;
       background-color: #eaeaea;
       padding: .5rem 1rem;
       box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -286,6 +285,12 @@ nav ul {
       z-index: 1; }
       #news .newsbox-container .text-box h1 {
         text-transform: uppercase; }
+        @media screen and (max-width: 500px) {
+          #news .newsbox-container .text-box h1 {
+            font-size: small; } }
+      @media screen and (max-width: 500px) {
+        #news .newsbox-container .text-box p {
+          font-size: small; } }
     #news .newsbox-container .photo-box {
       width: 45%;
       height: 80%;
