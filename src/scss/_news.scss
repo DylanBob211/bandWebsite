@@ -85,4 +85,27 @@
       @include softly;
     }
   }
+
+  #contact-box {
+    border: 5px solid #fff;
+    padding: .5rem 5rem;
+    display: none;
+    width: 90%;
+
+    &.shown {
+      display: block;  
+    }
+
+    h6 {
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    i {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-right: 1rem;
+    }
+  }
 }

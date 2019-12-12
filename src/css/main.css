@@ -322,6 +322,21 @@ nav ul {
       border-color: #da8300;
       color: #da8300;
       transition: all .3s ease-in-out; }
+  #news #contact-box {
+    border: 5px solid #fff;
+    padding: .5rem 5rem;
+    display: none;
+    width: 90%; }
+    #news #contact-box.shown {
+      display: block; }
+    #news #contact-box h6 {
+      color: #fff;
+      display: flex;
+      align-items: center; }
+    #news #contact-box i {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-right: 1rem; }
 
 * {
   box-sizing: border-box; }
@@ -332,6 +347,10 @@ body {
   background: #000;
   font-family: Arial, Helvetica, sans-serif, sans-serif;
   color: #000; }
+
+button {
+  background: none;
+  outline: none; }
 
 /*Global*/
 img {
