@@ -151,7 +151,7 @@ nav ul {
   width: 70%;
   height: 70%;
   box-sizing: content-box;
-  padding: 10%;
+  padding: 2rem;
   background-color: rgba(218, 131, 0, 0.5);
   display: flex;
   flex-direction: column;
@@ -160,9 +160,8 @@ nav ul {
   /*btn-icons*/ }
   @media (orientation: landscape) {
     #mp3-player {
-      float: left;
       margin: 0 auto;
-      width: 35%; } }
+      width: 40%; } }
   #mp3-player i {
     border: 2px solid #fff;
     padding: .6rem;
@@ -264,6 +263,7 @@ nav ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
   height: 100vh;
   background: url("../assets/imgs/Vecs/NewsBG.svg") no-repeat;
   background-size: cover; }
@@ -297,7 +297,8 @@ nav ul {
     #news .newsbox-container .photo-box {
       width: 45%;
       height: 80%;
-      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25); }
+      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+      transition: transform .5s; }
       #news .newsbox-container .photo-box:nth-child(1) {
         position: relative;
         left: 10%;
@@ -311,6 +312,9 @@ nav ul {
         background: url("../assets/imgs/band-photo/palco1.webp");
         background-size: cover;
         background-position: center; }
+      #news .newsbox-container .photo-box:hover {
+        z-index: 2;
+        transform: scale(1.1); }
   #news .contact-btn {
     text-align: center;
     color: #fff;

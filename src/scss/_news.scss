@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // width: 100vw;
+  width: 100vw;
   height: 100vh;
   background: url('../assets/imgs/Vecs/NewsBG.svg') no-repeat;
   background-size: cover;
@@ -53,7 +53,7 @@
       width: 45%;
       height: 80%;
       box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-
+      transition: transform .5s;
       &:nth-child(1) {
         position: relative;
         left: 10%;
@@ -69,6 +69,11 @@
         background: url("../assets/imgs/band-photo/palco1.webp");
         background-size: cover;
         background-position: center;
+      }
+
+      &:hover {
+        z-index: 2;
+        transform: scale(1.1);
       }
     }
   }
