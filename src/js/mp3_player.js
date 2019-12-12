@@ -91,9 +91,9 @@ const mp3Player = (function () {
 
     }
 
-    async function onBarClick(x) {
+    function onBarClick(x) {
       const currentSong = album.getCurrentSong();
-      const isPlaying = await currentSong.isPlaying();
+      const isPlaying = currentSong.isPlaying();
       if (isPlaying) {
         currentSong.pause();
         updateBarPointer(x);
@@ -213,9 +213,9 @@ const mp3Player = (function () {
       updateSongData();
     };
 
-    async function nextSong() {
+    function nextSong() {
       const currentSong = album.getCurrentSong();
-      const isPlaying = await currentSong.isPlaying();
+      const isPlaying = currentSong.isPlaying();
       resetSong(currentSong);
       album.selectSong(album.songSelected + 1);
       const newSong = album.getCurrentSong();
