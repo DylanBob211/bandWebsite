@@ -129,22 +129,22 @@ nav ul {
       height: 100%; }
       #showcase .carousel .carousel_photo:first-child {
         z-index: 2; }
-    #showcase .carousel #arrow i {
-      position: absolute;
-      z-index: 2;
-      top: 70%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: block;
-      color: #eaeaea;
-      font-size: 6rem;
-      transition: color 0.3s, font-size 0.3s, opacity 0.7s;
-      opacity: 0; }
-      #showcase .carousel #arrow i:hover {
-        color: #fff;
-        font-size: 6.5rem; }
-      #showcase .carousel #arrow i.active {
-        opacity: 1; }
+  #showcase #arrow i {
+    position: absolute;
+    z-index: 3;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    color: #eaeaea;
+    font-size: 6rem;
+    transition: color 0.3s, font-size 0.3s, opacity 0.7s;
+    opacity: 0; }
+    #showcase #arrow i:hover {
+      color: #fff;
+      font-size: 6.5rem; }
+    #showcase #arrow i.active {
+      opacity: 1; }
 
 #mp3-player {
   /*container*/

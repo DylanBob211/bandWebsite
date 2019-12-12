@@ -1,5 +1,6 @@
 const showcase = (function() {
   const bgShowcase = document.querySelector('#logo');
+  const arrow = document.querySelector('#arrow i');
   const imgPaths = [
     './src/assets/imgs/logo.png',
     './src/assets/imgs/band-photo/alpha-band.webp',
@@ -31,6 +32,8 @@ const showcase = (function() {
         selectImage(index);
       })
     });
+    setTimeout(showArrow, 3500);
+    arrow.addEventListener('click', hideArrow);
   }
 
   function next() {
@@ -66,6 +69,14 @@ const showcase = (function() {
 
   function autoChange() {
     intervalID = setInterval(next, 5000)
+  }
+
+  function showArrow() {
+    arrow.classList.add('active');
+  }
+
+  function hideArrow() {
+    arrow.classList.remove('active');
   }
 
   return { init }
