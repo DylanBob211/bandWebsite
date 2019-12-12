@@ -1,13 +1,13 @@
 const showcase = (function() {
   const bgShowcase = document.querySelector('#logo');
   const imgPaths = [
-    './src/imgs/logo.png',
-    './src/imgs/band-photo/alpha-band.webp',
-    './src/imgs/band-photo/band1.webp',
-    './src/imgs/band-photo/drummer.webp',
-    './src/imgs/band-photo/guitarist.webp',
-    './src/imgs/band-photo/mixer.webp',
-    './src/imgs/band-photo/piano-girl.webp'
+    './src/assets/imgs/logo.png',
+    './src/assets/imgs/band-photo/alpha-band.webp',
+    './src/assets/imgs/band-photo/band1.webp',
+    './src/assets/imgs/band-photo/drummer.webp',
+    './src/assets/imgs/band-photo/guitarist.webp',
+    './src/assets/imgs/band-photo/mixer.webp',
+    './src/assets/imgs/band-photo/piano-girl.webp'
   ]
   let elementSelectors = []
   let selectedImgIndex = 0;

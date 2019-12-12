@@ -6,9 +6,9 @@ import Gallery from './gallery.js';
 import Showcase from './showcase.js';
 
 //toggle menu-nav
-
-const ghost = new Song('Still Awake', '../music/ghostrifter-official-still-awake.mp3');
-const redlips = new Song('Red Lips', '../music/deoxys-beats-redlips.mp3');
+const url = 'https://dylanbob211.github.io/bandWebsite'
+const ghost = new Song('Still Awake', url + '/src/assets/music/ghostrifter-official-still-awake.mp3');
+const redlips = new Song('Red Lips', url + '/src/assets/music/deoxys-beats-redlips.mp3');
 
 const album = new Album('Far Gone', 'Scoop', '2018', null);
 album.addTrackToAlbum(ghost);

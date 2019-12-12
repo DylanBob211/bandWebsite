@@ -82,7 +82,7 @@ nav ul {
     height: 100vh;
     overflow: hidden;
     transition: background-image 1.5s ease-out;
-    background-image: url("../imgs/logo.png");
+    background-image: url("../assets/imgs/logo.png");
     background-position-y: center;
     background-position-x: center;
     background-size: contain;
