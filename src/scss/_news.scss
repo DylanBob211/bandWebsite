@@ -98,22 +98,32 @@
 
   #contact-box {
     border: 5px solid #fff;
-    padding: .5rem 5rem;
+    padding: .5rem 1rem;
     display: none;
     width: 90%;
 
     &.shown {
-      display: block;  
+      display: flex;  
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
     }
 
     h6 {
+      font-size: 2rem;
       color: #fff;
       display: flex;
       align-items: center;
+      @include mediaSm() {
+        font-size: small;
+      }
     }
 
     i {
-      font-size: 1.5rem;
+      @include mediaSm() {
+        font-size: small;
+      }
+      font-size: 2rem;
       color: #fff;
       margin-right: 1rem;
     }

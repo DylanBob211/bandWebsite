@@ -331,19 +331,29 @@ nav ul {
       transition: all .3s ease-in-out; }
   #news #contact-box {
     border: 5px solid #fff;
-    padding: .5rem 5rem;
+    padding: .5rem 1rem;
     display: none;
     width: 90%; }
     #news #contact-box.shown {
-      display: block; }
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center; }
     #news #contact-box h6 {
+      font-size: 2rem;
       color: #fff;
       display: flex;
       align-items: center; }
+      @media screen and (max-width: 500px) {
+        #news #contact-box h6 {
+          font-size: small; } }
     #news #contact-box i {
-      font-size: 1.5rem;
+      font-size: 2rem;
       color: #fff;
       margin-right: 1rem; }
+      @media screen and (max-width: 500px) {
+        #news #contact-box i {
+          font-size: small; } }
 
 * {
   box-sizing: border-box; }
