@@ -25,6 +25,27 @@
       z-index: 1;
     }
 
+    #showcase-text {
+      color: #fff;
+      background: darken(rgba($orange, 0.7), 10);
+      max-width: 60%;
+      padding: 2rem;
+      margin-top: 6rem;
+
+      h1 {
+        text-align: center;
+        background-color: darken(rgba($orange, 0.5), 5);
+        padding: 1rem;
+        mix-blend-mode: screen;
+      }
+
+      p {
+        background-color: darken(rgba($orange, 0.5), 5);
+        padding: 1rem;
+        mix-blend-mode: screen;
+      }
+    }
+
     .selector-box {
       position: absolute;
       z-index: 2;
