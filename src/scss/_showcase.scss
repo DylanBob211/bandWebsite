@@ -27,22 +27,34 @@
 
     #showcase-text {
       color: #fff;
-      background: darken(rgba($orange, 0.7), 10);
+      background: darken(rgba($orange, 0.3), 10);
       max-width: 60%;
       padding: 2rem;
-      margin-top: 6rem;
+      position: relative;
+      top: 20%;
+      opacity: 0;
+      z-index: 2;
+      transition: opacity .5s;
 
       h1 {
         text-align: center;
-        background-color: darken(rgba($orange, 0.5), 5);
+        background-color: darken(rgba($orange, 0.3), 5);
         padding: 1rem;
         mix-blend-mode: screen;
       }
 
       p {
-        background-color: darken(rgba($orange, 0.5), 5);
+        background-color: darken(rgba($orange, 0.3), 5);
         padding: 1rem;
         mix-blend-mode: screen;
+      }
+
+      &.active {
+        opacity: 1;
+      }
+
+      &.deactivate {
+        display: none;
       }
     }
 

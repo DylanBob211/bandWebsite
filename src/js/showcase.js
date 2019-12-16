@@ -1,6 +1,7 @@
 const showcase = (function() {
   const bgShowcase = document.querySelector('#logo');
   const arrow = document.querySelector('#arrow i');
+  const textbox = document.querySelector('#showcase-text');
   const imgPaths = [
     './src/assets/imgs/logo.png',
     './src/assets/imgs/band-photo/alpha-band.webp',
@@ -8,7 +9,6 @@ const showcase = (function() {
     './src/assets/imgs/band-photo/drummer.webp',
     './src/assets/imgs/band-photo/guitarist.webp',
     './src/assets/imgs/band-photo/mixer.webp',
-    './src/assets/imgs/band-photo/piano-girl.webp'
   ];
   const lipsumTitle = [
     '',
@@ -17,7 +17,6 @@ const showcase = (function() {
     'Ex do proident',
     'Laborum voluptate',
     'Ora pro nobis',
-    'In aliqua dolor enim'
   ];
   const lipsumTexts = [
     '',
@@ -26,11 +25,12 @@ const showcase = (function() {
     'Reprehenderit ut culpa excepteur et laboris aute nulla ut. Cillum non aliqua sit adipisicing id excepteur consequat minim tempor amet laborum proident. Lorem mollit consequat aliqua culpa officia ex est dolor consectetur non. Et fugiat sint aute irure consectetur excepteur ullamco duis incididunt labore adipisicing mollit irure. Consectetur ullamco officia cupidatat laboris sit.',
     'Do ea veniam ipsum velit ut ipsum. Cupidatat minim occaecat Lorem consequat do irure pariatur. Aute consectetur magna laboris et eu nulla.',
     'Nulla ad adipisicing sit cupidatat ea fugiat exercitation et do consectetur. Labore non sint fugiat irure cillum officia anim laborum dolore culpa sint sunt nisi. Qui nisi commodo laboris excepteur id magna qui labore. Est magna dolore et aliquip nulla cillum aliqua nisi exercitation anim. Dolor veniam pariatur consectetur aliqua nostrud do aute minim id ex. Magna non velit id adipisicing in occaecat non do ea nisi culpa. Sunt velit aute ad amet aliqua.',
-    'Ullamco consectetur non amet velit ea exercitation duis ut qui sint dolore esse sunt anim. Anim irure incididunt minim amet duis do cupidatat pariatur proident incididunt excepteur ex esse culpa. Non commodo anim dolor culpa veniam. Nulla tempor reprehenderit eiusmod proident exercitation reprehenderit ipsum dolor sunt aliqua. Mollit sint incididunt culpa irure veniam ex nisi consequat.',
   ];
   let elementSelectors = []
   let selectedImgIndex = 0;
-  let intervalID;
+  let imageIntervalID;
+  let textboxEnterTimeoutID;
+  let textboxExitTimeoutID;
 
   function init() {
     createSelectors();
@@ -60,6 +60,12 @@ const showcase = (function() {
     changeImage(selectedImgIndex);
     selectSelector(selectedImgIndex);
     selectText(selectedImgIndex);
+    if (selectedImgIndex === 0) {
+      deactivateShowcaseText()
+    } else {
+      textboxAnimation()
+    }
+    
   }
 
   function selectSelector(index) {
@@ -70,16 +76,45 @@ const showcase = (function() {
   }
 
   function selectImage(index) {
-    clearInterval(intervalID);
+    if (imageIntervalID) clearInterval(imageIntervalID);
+    if (textboxEnterTimeoutID) clearTimeout(textboxEnterTimeoutID);
+    if (textboxExitTimeoutID) clearTimeout(textboxExitTimeoutID);
     selectedImgIndex = index;
     selectSelector(index);
     changeImage(index);
     autoChange();
-    selectText(index);
+    selectText(index)
+    if (index === 0) {
+      deactivateShowcaseText()
+    } else {
+      textboxAnimation()
+    }
+  }
+
+  function deactivateShowcaseText() {
+    textbox.classList.add('deactivate');
+  }
+
+  function activateShowcaseText() {
+    if (textbox.classList.contains('deactivate')) 
+      textbox.classList.remove('deactivate');
+    textbox.classList.add('active');
+  }
+
+  function removeShwocaseText() {
+    textbox.classList.remove('active');
+  }
+
+  function textboxAnimation() {
+    textboxEnterTimeoutID = setTimeout(() => {
+      activateShowcaseText()
+      textboxExitTimeoutID = setTimeout(() => {
+        removeShwocaseText();
+      }, 6000)
+    }, 1000)
   }
 
   function selectText(index) {
-    const textbox = document.querySelector('#showcase-text');
     const header = textbox.querySelector('h1');
     const p = textbox.querySelector('p');
     header.innerHTML = lipsumTitle[index];
@@ -96,7 +131,7 @@ const showcase = (function() {
   }
 
   function autoChange() {
-    intervalID = setInterval(next, 5000)
+    imageIntervalID = setInterval(next, 8000)
   }
 
   function showArrow() {

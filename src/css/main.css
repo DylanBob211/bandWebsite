@@ -98,19 +98,27 @@ nav ul {
       z-index: 1; }
     #showcase #logo #showcase-text {
       color: #fff;
-      background: rgba(192, 115, 0, 0.7);
+      background: rgba(192, 115, 0, 0.3);
       max-width: 60%;
       padding: 2rem;
-      margin-top: 6rem; }
+      position: relative;
+      top: 20%;
+      opacity: 0;
+      z-index: 2;
+      transition: opacity .5s; }
       #showcase #logo #showcase-text h1 {
         text-align: center;
-        background-color: rgba(218, 131, 0, 0.5);
+        background-color: rgba(218, 131, 0, 0.3);
         padding: 1rem;
         mix-blend-mode: screen; }
       #showcase #logo #showcase-text p {
-        background-color: rgba(218, 131, 0, 0.5);
+        background-color: rgba(218, 131, 0, 0.3);
         padding: 1rem;
         mix-blend-mode: screen; }
+      #showcase #logo #showcase-text.active {
+        opacity: 1; }
+      #showcase #logo #showcase-text.deactivate {
+        display: none; }
     #showcase #logo .selector-box {
       position: absolute;
       z-index: 2;
