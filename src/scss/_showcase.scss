@@ -35,18 +35,28 @@
       opacity: 0;
       z-index: 2;
       transition: opacity .5s;
+      @include mediaSm() {
+        max-width: 80%;
+        top: 15%;
+      }
 
       h1 {
         text-align: center;
         background-color: darken(rgba($orange, 0.3), 5);
         padding: 1rem;
         mix-blend-mode: screen;
+        @include mediaSm() {
+          font-size: small;
+        }
       }
 
       p {
         background-color: darken(rgba($orange, 0.3), 5);
         padding: 1rem;
         mix-blend-mode: screen;
+        @include mediaSm() {
+          font-size: small;
+        }
       }
 
       &.active {

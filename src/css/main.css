@@ -106,15 +106,25 @@ nav ul {
       opacity: 0;
       z-index: 2;
       transition: opacity .5s; }
+      @media screen and (max-width: 500px) {
+        #showcase #logo #showcase-text {
+          max-width: 80%;
+          top: 15%; } }
       #showcase #logo #showcase-text h1 {
         text-align: center;
         background-color: rgba(218, 131, 0, 0.3);
         padding: 1rem;
         mix-blend-mode: screen; }
+        @media screen and (max-width: 500px) {
+          #showcase #logo #showcase-text h1 {
+            font-size: small; } }
       #showcase #logo #showcase-text p {
         background-color: rgba(218, 131, 0, 0.3);
         padding: 1rem;
         mix-blend-mode: screen; }
+        @media screen and (max-width: 500px) {
+          #showcase #logo #showcase-text p {
+            font-size: small; } }
       #showcase #logo #showcase-text.active {
         opacity: 1; }
       #showcase #logo #showcase-text.deactivate {
